@@ -16,6 +16,16 @@ class DemoModule extends KsMf.app.Module {
             route: prefix + "/",
             controller: 'DefaultController',
             method: 'rest'
+        }, {
+            route: prefix + "/reasons/:id",
+            controller: 'DefaultController',
+            action: 'select',
+            method: 'get'
+        }, {
+            route: prefix + "/reasons/:id",
+            controller: 'DefaultController',
+            action: 'update',
+            method: 'put'
         }];
     }
 }

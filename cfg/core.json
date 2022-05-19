@@ -1,0 +1,74 @@
+{
+    "development": {
+        "port": 3005,
+        "host": "localhost",
+        "protocol": "http",
+        "log": 2,
+        "module": {
+            "load": [
+                "demo",
+                "app"
+            ]
+        },
+        "event": {},
+        "helper": {
+            "logger": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "app.Logger"
+            },
+            "MyAPI": {
+                "path": "service",
+                "module": "app"
+            }
+        }
+    },
+    "production": {
+        "port": 3006,
+        "host": "localhost",
+        "protocol": "http",
+        "log": 2,
+        "module": {
+            "load": [
+                "demo",
+                "app"
+            ]
+        },
+        "event": {},
+        "helper": {
+            "logger": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "app.Logger"
+            },
+            "MyAPI": {
+                "path": "service",
+                "module": "app"
+            }
+        }
+    },
+    "test": {
+        "port": 3007,
+        "host": "localhost",
+        "protocol": "http",
+        "log": 2,
+        "module": {
+            "load": [
+                "demo",
+                "app"
+            ]
+        },
+        "event": {},
+        "helper": {
+            "logger": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "app.Logger"
+            },
+            "MyAPI": {
+                "path": "service",
+                "module": "app"
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "ksmf-skeleton-rest",
+  "version": "1.0.0",
+  "description": "KsMf REST API Skeleton",
+  "main": "./bin/server.js",
+  "scripts": {
+    "start": "node ./bin/server.js",
+    "dev": "nodemon ./bin/server.js",
+    "test": "jest",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
+    "db:migrate:status": "npx sequelize-cli db:migrate:status",
+    "db:migrate:generate": "npx sequelize-cli migration:generate --name",
+    "db:migration:generate": "npx sequelize-cli migration:generate --name",
+    "heroku-postbuild": "node_modules/.bin/sequelize db:migrate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameksike/ksmf-skeleton-rest.git"
+  },
+  "keywords": [
+    "ksmf",
+    "rest",
+    "api",
+    "web",
+    "ksike"
+  ],
+  "author": "Antonio Membrides Espinosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ameksike/ksmf-skeleton-rest/issues"
+  },
+  "homepage": "https://github.com/ameksike/ksmf-skeleton-rest#readme",
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3",
+    "nodemon": "^2.0.7",
+    "sqlite3": "^5.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "ksmf": "^1.0.47"
+  }
+}

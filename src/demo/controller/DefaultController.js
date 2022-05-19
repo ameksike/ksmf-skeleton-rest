@@ -12,6 +12,18 @@ class DefaultController extends KsMf.app.Controller {
     async init() {
         this.logger = this.helper.get('logger');
         this.service = this.helper.get('MyAPI');
+        this.srvUser = this.helper.get({
+            name: 'UserService',
+            path: 'service',
+            module: this.module,
+            options: {
+                opt: this.opt
+            },
+            dependency: {
+                dao: 'dao',
+                helper: 'helper'
+            }
+        });
 
         /**
          * If authentication is required:
@@ -48,8 +60,9 @@ class DefaultController extends KsMf.app.Controller {
         }
     }
 
-    select(req, res, next) {
-        res.json({ "message": `REST API SELECT, ID:${req.params.id}.` });
+    async select(req, res, next) {
+        const user = await this.srvUser.select(req.params.id);
+        res.json({ "message": `REST API SELECT, ID:${req.params.id}.`, user });
     }
 
     delete(req, res, next) {
@@ -64,8 +77,11 @@ class DefaultController extends KsMf.app.Controller {
         res.json({ "message": `REST API UPDATE, ID:${req.params.id}, name: ${req.body.name}.` });
     }
 
-    insert(req, res, next) {
-        res.json({ "message": `REST API INSERT, name: ${req.body.name}.` });
+    async insert(req, res, next) {
+        const payload = req.body;
+        const data = await this.srvUser.insert(payload);
+        this.logger.info('INSERT', data);
+        res.json(data);
     }
 }
 

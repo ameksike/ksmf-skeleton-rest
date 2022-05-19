@@ -10,8 +10,47 @@
                 "app"
             ]
         },
-        "event": {},
+        "event": {
+            "onInitConfig": [
+                "dao.wrapper"
+            ],
+            "onInitModules": [
+                "dao.wrapper"
+            ],
+            "onLoadModule": [
+                "dao.wrapper"
+            ]
+        },
         "helper": {
+            "sequelize": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "dao.Sequelize",
+                "dependency": {
+                    "helper": "helper"
+                }
+            },
+            "dao": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "dao.Sequelize",
+                "dependency": {
+                    "helper": "helper"
+                }
+            },
+            "dao.wrapper": {
+                "name": "ksmf",
+                "type": "lib",
+                "params": {
+                    "exclude": [
+                        "forest"
+                    ]
+                },
+                "namespace": "dao.Wrapper",
+                "dependency": {
+                    "helper": "helper"
+                }
+            },
             "logger": {
                 "name": "ksmf",
                 "type": "lib",

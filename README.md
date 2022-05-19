@@ -15,3 +15,7 @@ This is a template to create REST services in a simple and easy way.
 
 ## Test
 - npm run test
+
+## DB
+- npx sequelize-cli model:generate --name user --attributes name:string,age:integer,job:string,note:text
+- npx sequelize-cli db:migrate

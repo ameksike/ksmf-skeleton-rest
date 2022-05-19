@@ -31,6 +31,9 @@ describe('Demo_Default_Controller', () => {
         req
             .get(baseUrl)
             .end((error, res) => {
+                expect(res.status).toBe(200);
+                expect(res.body).toBeInstanceOf(Object);
+                expect(typeof(res.body.message) ).toBe('string');
                 done();
             });
         done();

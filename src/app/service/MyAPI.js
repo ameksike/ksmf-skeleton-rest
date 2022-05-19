@@ -7,6 +7,7 @@
  * @version    	1.0
  * @require     axios
  * */
+const axios = require('axios');
 class MyAPI {
 
     constructor() {
@@ -33,7 +34,6 @@ class MyAPI {
      * @param {OBJECT} options.data 
      */
     async req(options) {
-        const axios = require('axios');
         options = options || {};
         const headers = Object.assign({
             'Authorization': this.token

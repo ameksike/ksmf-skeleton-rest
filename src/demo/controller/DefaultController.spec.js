@@ -36,7 +36,18 @@ describe('Demo_Default_Controller', () => {
         done();
     });
 
-    
+    it('Select', (done) => {
+        req
+            .get(baseUrl + '/reasons/test1')
+            .end((error, res) => {
+                expect(res.status).toBe(200);
+                expect(res.body).toBeInstanceOf(Object);
+                expect(typeof(res.body.message) ).toBe('string');
+                done();
+            });
+        done();
+    });
+
     it('Insert', (done) => {
         req
             .post(baseUrl)
@@ -46,7 +57,6 @@ describe('Demo_Default_Controller', () => {
                 "device_id": "d9588fb6b79eba7dfd1c2bb98f57fbb8",
             })
             .end((error, res) => {
-                console.log(res.body);
                 expect(res.status).toBe(200);
                 expect(res.body).toBeInstanceOf(Object);
                 expect(typeof(res.body.message) ).toBe('string');

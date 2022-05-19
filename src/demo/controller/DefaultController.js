@@ -49,23 +49,23 @@ class DefaultController extends KsMf.app.Controller {
     }
 
     select(req, res, next) {
-        res.json({ "message": `REST API <${this.opt.name}> SELECT, ID:${req.params.id}.` });
+        res.json({ "message": `REST API SELECT, ID:${req.params.id}.` });
     }
 
     delete(req, res, next) {
-        res.json({ "message": `REST API <${this.opt.name}> DELETE, ID:${req.params.id}.` });
+        res.json({ "message": `REST API DELETE, ID:${req.params.id}.` });
     }
 
     clean(req, res, next) {
-        res.json({ "message": `REST API <${this.opt.name}> CLEAN.` });
+        res.json({ "message": `REST API CLEAN.` });
     }
 
     update(req, res, next) {
-        res.json({ "message": `REST API <${this.opt.name}> UPDATE, ID:${req.params.id}, name: ${req.body.name}.` });
+        res.json({ "message": `REST API UPDATE, ID:${req.params.id}, name: ${req.body.name}.` });
     }
 
     insert(req, res, next) {
-        res.json({ "message": `REST API <${this.opt.name}> INSERT, name: ${req.body.name}.` });
+        res.json({ "message": `REST API INSERT, name: ${req.body.name}.` });
     }
 }
 

@@ -108,6 +108,33 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
             });
     });
 
+
+    it('Insert comment with tags', (done) => {
+        req
+            .post(baseUrl)
+            .send({
+                "comment": "Test 9 Comment",
+                "flightId": 666,
+                "userId": 1,
+                "tags": [{
+                    "name": "newTag1",
+                    "tagCommnets": {}
+                }, {
+                    "name": "newTag2",
+                    "tagCommnets": {}
+                }]
+            })
+            .end((error, res) => {
+                if (error) {
+                    return done(error);
+                }
+                expect(res.status).toBe(200);
+                expect(res.body).toBeInstanceOf(Object);
+                expect(res.body.flightId).toBe(666);
+                return done();
+            });
+    });
+
     it('Update comment', (done) => {
         req
             .put(baseUrl + '/1')

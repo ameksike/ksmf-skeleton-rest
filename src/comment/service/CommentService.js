@@ -28,18 +28,40 @@ class CommentService extends CrudService {
         const tagModel = this.dao.models['tag'];
         const tagComentModel = this.dao.models['tagComment'];
         const userModel = this.dao.models['user'];
+        const tagComentrelation = {
+            model: tagComentModel,
+            include: [{
+                model: tagModel
+            }]
+        };
         if (tagModel && tagComentModel) {
             this.include = [{
-                model: tagComentModel,
-                include: [{
-                    model: tagModel
-                }]
-            }, {
                 model: userModel
+            }, {
+                model: tagModel
             }];
         }
         return this;
     }
+
+    setTags(comment, payload) {
+        if (comment && payload.tags && payload.tags instanceof Array) {
+            return comment.setTags(payload.tags);
+        }
+    }
+
+    async save(payload) {
+        const comment = await super.save(payload);
+        const tags = await this.setTags(comment, payload);
+        return comment;
+    }
+
+    async update(payload) {
+        const comment = await super.update(payload);
+        const tags = await this.setTags(comment, payload);
+        return comment;
+    }
+
 }
 
 module.exports = CommentService;

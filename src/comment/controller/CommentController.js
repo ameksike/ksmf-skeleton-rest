@@ -7,6 +7,7 @@
  * @version    	1.0 
  * */
 const KsMf = require('ksmf');
+const commentValidator = require('../validator/Comment');
 class CommentController extends KsMf.app.Controller {
 
     async init() {
@@ -22,6 +23,16 @@ class CommentController extends KsMf.app.Controller {
                 helper: 'helper'
             }
         });
+        //... initialize validations
+        this.initValidations();
+    }
+
+    /**
+     * @description define groups of validations based on a certain action
+     */
+    initValidations() {
+        this.middleware.insert = commentValidator.all;
+        this.middleware.update = commentValidator.all;
     }
 
     /**

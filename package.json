@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "express-validator": "^6.14.0",
     "ksmf": "^1.0.49",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",

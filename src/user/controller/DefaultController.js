@@ -17,9 +17,6 @@ class DefaultController extends KsMf.app.Controller {
             name: 'UserService',
             path: 'service',
             module: this.module,
-            options: {
-                opt: this.opt
-            },
             dependency: {
                 dao: 'dao',
                 helper: 'helper'

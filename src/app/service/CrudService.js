@@ -12,10 +12,10 @@ class CrudService {
      * @description initialize the service 
      */
     constructor(config) {
-        this.opt = config ? config.opt : {};
         this.dao = config ? config.dao : null;
         this.table = 'Crud';
         this.idField = 'id';
+        this.include = [];
     }
 
     /**
@@ -24,8 +24,7 @@ class CrudService {
     async list() {
         if (!this.dao) return null;
         const model = this.dao.models[this.table];
-        const data = await model.findAll();
-        return data;
+        return await model.findAll({ include: this.include });
     }
 
     /**
@@ -36,10 +35,9 @@ class CrudService {
         if (!this.dao) return null;
         try {
             const model = this.dao.models[this.table];
-            const data = await model.create({
+            return await model.create({
                 ...payload
             });
-            return data;
         } catch (error) {
             const logger = this.getLogger();
             if (logger) {
@@ -69,7 +67,7 @@ class CrudService {
                 data = await model.findOne({ where });
             }
             return result & result[0] ? data : null;
-        } catch (error) { 
+        } catch (error) {
             const logger = this.getLogger();
             if (logger) {
                 logger.prefix('CRUD.Service').error(error);

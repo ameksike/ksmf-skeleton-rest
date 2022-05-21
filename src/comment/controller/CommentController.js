@@ -17,9 +17,6 @@ class CommentController extends KsMf.app.Controller {
             name: 'CommentService',
             path: 'service',
             module: this.module,
-            options: {
-                opt: this.opt
-            },
             dependency: {
                 dao: 'dao',
                 helper: 'helper'
@@ -30,12 +27,14 @@ class CommentController extends KsMf.app.Controller {
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
+        this.srv.configure();
         const data = await this.srv.list(page, size);
         res.json(data);
     }
 
     async select(req, res) {
         const id = req.params['id'];
+        this.srv.configure();
         const data = await this.srv.select(id);
         res.json(data);
     }

@@ -17,9 +17,6 @@ class TagController extends KsMf.app.Controller {
             name: 'TagService',
             path: 'service',
             module: this.module,
-            options: {
-                opt: this.opt
-            },
             dependency: {
                 dao: 'dao',
                 helper: 'helper'

@@ -13,6 +13,11 @@ const fieldOptional = {
                 return !value || value instanceof Array;
             }
         }
+    },
+    date: {
+        errorMessage: 'date field must be date format',
+        isDate: true,
+        optional: true
     }
 };
 

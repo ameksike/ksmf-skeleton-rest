@@ -7,6 +7,7 @@
  * @version    	1.0
  * */
 const KsMf = require('ksmf');
+const userValidator = require('../validator/User');
 class DefaultController extends KsMf.app.Controller {
 
     async init() {
@@ -22,7 +23,7 @@ class DefaultController extends KsMf.app.Controller {
                 helper: 'helper'
             }
         });
-
+        this.initValidations();
         /**
          * If authentication is required:
          * this.token = await this.service.getAuthorization({
@@ -30,6 +31,14 @@ class DefaultController extends KsMf.app.Controller {
          *      client_secret: process.env.MyAPI_CLIENT_SECRET
          * });
          */
+    }
+
+    /**
+     * @description define groups of validations based on a certain action
+     */
+     initValidations() {
+        this.middleware.insert = userValidator.all;
+        this.middleware.update = userValidator.all;
     }
 
     /**

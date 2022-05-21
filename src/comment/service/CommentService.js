@@ -11,11 +11,17 @@ const CrudService = require('../../app/service/CrudService');
 
 class CommentService extends CrudService {
 
+    /**
+     * @description initialize the service avoiding human error in inheritance management
+     */
     init() {
         this.table = 'comment';
         this.configure();
     }
 
+    /**
+     * @description define dependencies to include for data selection operations
+     */
     configure() {
         const tagModel = this.dao.models['tag'];
         const tagComentModel = this.dao.models['tagComment'];
@@ -30,6 +36,7 @@ class CommentService extends CrudService {
                 model: userModel
             }];
         }
+        return this;
     }
 }
 

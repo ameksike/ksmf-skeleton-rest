@@ -27,15 +27,13 @@ class CommentController extends KsMf.app.Controller {
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
-        this.srv.configure();
-        const data = await this.srv.list(page, size);
+        const data = await await this.srv.configure().list(page, size);
         res.json(data);
     }
 
     async select(req, res) {
         const id = req.params['id'];
-        this.srv.configure();
-        const data = await this.srv.select(id);
+        const data = await this.srv.configure().select(id);
         res.json(data);
     }
 

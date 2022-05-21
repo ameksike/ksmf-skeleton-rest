@@ -21,12 +21,18 @@ class CrudService {
     /**
      * @description list all entities 
      */
-    async list(page = 0, size = 10) {
+    async list(page = 0, size = 10, query = null) {
         const offset = page * size;
         const limit = size;
+        const where = {};
         if (!this.dao) return null;
         const model = this.dao.models[this.table];
-        return await model.findAll({ offset, limit });
+        if(query) {
+            for(let criterion in query) {
+                where[criterion] = query[criterion];
+            }
+        }
+        return await model.findAll({ offset, limit, where });
     }
 
     /**

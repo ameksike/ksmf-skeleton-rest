@@ -24,10 +24,20 @@ class CommentController extends KsMf.app.Controller {
         });
     }
 
+    getQuery(payload) {
+        try {
+            return payload.query ? JSON.parse(payload.query) : null;
+        }
+        catch (error) {
+            return null;
+        }
+    }
+
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
-        const data = await await this.srv.configure().list(page, size);
+        const query = this.getQuery(req.query);
+        const data = await await this.srv.configure().list(page, size, query);
         res.json(data);
     }
 

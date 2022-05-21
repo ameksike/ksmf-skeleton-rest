@@ -47,7 +47,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                     "id": 3,
                     "comment": "this is a comment test 3",
                     "userId": models.user.id,
-                    "flightId": 444,
+                    "flightId": 222,
                 }
             ]);
         } catch (error) {
@@ -71,6 +71,20 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                 expect(res.status).toBe(200);
                 expect(res.body).toBeInstanceOf(Array);
                 expect(res.body.length > 2).toBe(true);
+                return done();
+            });
+    });
+
+    it('List of comments with filters', (done) => {
+        req
+            .get(baseUrl + '?page=0&size=10&query={"flightId":222,"userId":1}')
+            .end((error, res) => {
+                if (error) {
+                    return done(error);
+                }
+                expect(res.status).toBe(200);
+                expect(res.body).toBeInstanceOf(Array);
+                expect(res.body.length === 2).toBe(true);
                 return done();
             });
     });
@@ -116,13 +130,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                 "comment": "Test 9 Comment",
                 "flightId": 666,
                 "userId": 1,
-                "tags": [{
-                    "name": "newTag1",
-                    "tagCommnets": {}
-                }, {
-                    "name": "newTag2",
-                    "tagCommnets": {}
-                }]
+                "tags": [1,2]
             })
             .end((error, res) => {
                 if (error) {

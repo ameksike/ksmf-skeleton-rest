@@ -20,7 +20,9 @@ class CommentService extends CrudService {
     }
 
     /**
-     * @description define dependencies to include for data selection operations
+     * @description define dependencies to include for data selection operations,
+     *              for more information regarding relationships between entities see the following link:
+     *              https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/
      */
     configure() {
         const tagModel = this.dao.models['tag'];

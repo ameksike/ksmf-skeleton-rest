@@ -11,17 +11,17 @@ const KsMf = require('ksmf');
 class CommentModule extends KsMf.app.Module {
 
     initConfig() {
-        const prefix = "/api/v1" + this.prefix;
+        const version = "/api/v1";
         this.routes = [{
-            route: prefix + "/",
+            route: version + this.prefix + "/",
             controller: 'CommentController',
             method: 'rest'
         }, {
-            route: prefix + "/:commentId/tag/",
+            route: version + this.prefix + "/:commentId/tag/",
             controller: 'TagController',
             method: 'rest'
         }, {
-            route: prefix + "/tag/",
+            route: version + "/tag/",
             controller: 'TagController',
             method: 'rest'
         }];

@@ -32,7 +32,7 @@ class CommentController extends KsMf.app.Controller {
      */
     initValidations() {
         this.middleware.insert = commentValidator.all;
-        this.middleware.update = commentValidator.all;
+        this.middleware.update = commentValidator.optional;
     }
 
     /**

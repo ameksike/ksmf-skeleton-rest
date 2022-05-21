@@ -4,31 +4,54 @@ const run = require('../../app/validator/Validator');
  * For more information on validations see the link below:
  *  https://express-validator.github.io/docs/schema-validation.html
  */
+
+const fieldOptional = {
+    tags: {
+        custom: {
+            errorMessage: 'tags must be an array of tag id',
+            options: (value, { req, location, path }) => {
+                return !value || value instanceof Array;
+            }
+        }
+    }
+};
+
+const fieldRequired = {
+    comment: {
+        isLength: {
+            errorMessage: 'should be at least 7 chars long',
+            options: { min: 5, max: 200 },
+        }
+    },
+    userId: {
+        isInt: {
+            errorMessage: 'userId is required and must be an integer value',
+            if: value => {
+                return value !== '';
+            }
+        }
+    },
+    flightId: {
+        isInt: {
+            errorMessage: 'flightId is required and must be an integer value',
+            if: value => {
+                return value !== '';
+            }
+        }
+    }
+};
+
 module.exports = {
     all: [
         checkSchema({
-            comment: {
-                isLength: {
-                    errorMessage: 'should be at least 7 chars long',
-                    options: { min: 5, max: 200 },
-                }
-            },
-            userId: {
-                isInt: {
-                    errorMessage: 'userId is required and must be an integer value',
-                    if: value => {
-                        return value !== '';
-                    }
-                }
-            },
-            flightId: {
-                isInt: {
-                    errorMessage: 'flightId is required and must be an integer value',
-                    if: value => {
-                        return value !== '';
-                    }
-                }
-            },
+            ...fieldRequired,
+            ...fieldOptional
+        }),
+        run
+    ],
+    optional: [
+        checkSchema({
+            ...fieldOptional
         }),
         run
     ]

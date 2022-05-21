@@ -8,7 +8,7 @@
  * */
 const KsMf = require('ksmf');
 
-class DemoModule extends KsMf.app.Module {
+class UserModule extends KsMf.app.Module {
 
     initConfig() {
         const prefix = "/api/v1" + this.prefix;
@@ -16,17 +16,7 @@ class DemoModule extends KsMf.app.Module {
             route: prefix + "/",
             controller: 'DefaultController',
             method: 'rest'
-        }, {
-            route: prefix + "/reasons/:id",
-            controller: 'DefaultController',
-            action: 'select',
-            method: 'get'
-        }, {
-            route: prefix + "/reasons/:id",
-            controller: 'DefaultController',
-            action: 'update',
-            method: 'put'
         }];
     }
 }
-module.exports = DemoModule;
+module.exports = UserModule;

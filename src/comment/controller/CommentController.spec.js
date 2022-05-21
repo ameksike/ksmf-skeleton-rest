@@ -77,7 +77,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
 
     it('List of comments with filters and sort', (done) => {
         req
-            .get(baseUrl + '?page=0&size=10&filter={"flightId":666,"userId":1}&sort=[["id", "DESC"]]')
+            .get(baseUrl + '?page=0&size=10&filter={"flightId":222,"userId":1}&sort=[["id", "DESC"]]')
             .end((error, res) => {
                 if (error) {
                     return done(error);

@@ -24,6 +24,12 @@ class CommentController extends KsMf.app.Controller {
         });
     }
 
+    /**
+     * @description get safe JSON decode
+     * @param {OBJECT} payload 
+     * @param {STRING} key 
+     * @returns 
+     */
     getObj(payload, key) {
         try {
             return payload[key] ? JSON.parse(payload[key]) : null;

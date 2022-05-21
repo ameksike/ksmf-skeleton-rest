@@ -17,10 +17,8 @@ module.exports = {
       flightId: {
         type: Sequelize.INTEGER
       },
-      tagId: {
-        type: Sequelize.INTEGER
-      },
       date: {
+        defaultValue: Sequelize.fn('NOW'),
         type: Sequelize.DATE
       },
       createdAt: {

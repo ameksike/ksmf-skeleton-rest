@@ -24,9 +24,9 @@ class CommentController extends KsMf.app.Controller {
         });
     }
 
-    getQuery(payload) {
+    getObj(payload, key) {
         try {
-            return payload.query ? JSON.parse(payload.query) : null;
+            return payload[key] ? JSON.parse(payload[key]) : null;
         }
         catch (error) {
             return null;
@@ -36,8 +36,9 @@ class CommentController extends KsMf.app.Controller {
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
-        const query = this.getQuery(req.query);
-        const data = await await this.srv.configure().list(page, size, query);
+        const filter = this.getObj(req.query, 'filter');
+        const sort = this.getObj(req.query, 'sort');
+        const data = await await this.srv.configure().list(page, size, filter, sort);
         res.json(data);
     }
 

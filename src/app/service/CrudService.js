@@ -21,18 +21,18 @@ class CrudService {
     /**
      * @description list all entities 
      */
-    async list(page = 0, size = 10, query = null) {
+    async list(page = 0, size = 10, filter = null, sort = null) {
         const offset = page * size;
         const limit = size;
         const where = {};
         if (!this.dao) return null;
         const model = this.dao.models[this.table];
-        if(query) {
-            for(let criterion in query) {
-                where[criterion] = query[criterion];
+        if (filter) {
+            for (let criterion in filter) {
+                where[criterion] = filter[criterion];
             }
         }
-        return await model.findAll({ offset, limit, where });
+        return await model.findAll({ offset, limit, where, order: sort, include: this.include });
     }
 
     /**
@@ -132,7 +132,7 @@ class CrudService {
                 [Sequelize.Op.eq]: value.toString()
             }
         }
-        const result = await model.findAll({ where });
+        const result = await model.findAll({ where, include: this.include });
         return value instanceof Array ? result : result[0];
     }
 

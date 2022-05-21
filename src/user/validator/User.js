@@ -11,7 +11,12 @@ module.exports = {
             name: {
                 errorMessage: 'name is required and must be string',
                 isString: true,
-                isEmpty: false
+                isEmpty: false,
+                customSanitizer: {
+                    options: (value, { req, location, path }) => {
+                        return (value || '').trim();
+                    },
+                },
             },
             age: {
                 errorMessage: 'age is required and must be integer',

@@ -143,11 +143,12 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
             });
     });
 
-    it('Update comment', (done) => {
+    it('Update comment and tags', (done) => {
         req
             .put(baseUrl + '/1')
             .send({
-                flightId: 999
+                "flightId": 999,
+                "tags": [3]
             })
             .end((error, res) => {
                 if (error) {

@@ -17,11 +17,11 @@ class CommentModule extends KsMf.app.Module {
             controller: 'CommentController',
             method: 'rest'
         }, {
-            route: version + this.prefix + "/:commentId/tag/",
+            route: version + "/tag/",
             controller: 'TagController',
             method: 'rest'
         }, {
-            route: version + "/tag/",
+            route: version + this.prefix + "/:commentId/tag/",
             controller: 'TagController',
             method: 'rest'
         }];

@@ -27,4 +27,5 @@ module.exports = {
             example: "retired"
         }
     },
+    required: ['name']
 }

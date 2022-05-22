@@ -22,6 +22,17 @@ module.exports = {
         "post": {
             "tags": ["USER"],
             "description": "create or add a new user",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "user created",

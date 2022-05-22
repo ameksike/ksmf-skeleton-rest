@@ -2,7 +2,8 @@ const DefaultController = require('./paths/DefaultController');
 module.exports = {
     components: {
         schemas: {
-            User: require('./schemas/User')
+            User: require('./schemas/User'),
+            Filter: require('./schemas/Filter'),
         }
     },
     paths: {

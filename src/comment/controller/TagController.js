@@ -1,7 +1,7 @@
 /*
  * @author		Antonio Membrides Espinosa
  * @email		tonykssa@gmail.com
- * @date		20/08/2021
+ * @date		21/05/2022
  * @copyright  	Copyright (c) 2020-2030
  * @license    	GPL
  * @version    	1.0 
@@ -17,9 +17,6 @@ class TagController extends KsMf.app.Controller {
             name: 'TagService',
             path: 'service',
             module: this.module,
-            options: {
-                opt: this.opt
-            },
             dependency: {
                 dao: 'dao',
                 helper: 'helper'
@@ -27,10 +24,27 @@ class TagController extends KsMf.app.Controller {
         });
     }
 
+    /**
+     * @description get safe JSON decode
+     * @param {OBJECT} payload 
+     * @param {STRING} key 
+     * @returns 
+     */
+    getObj(payload, key) {
+        try {
+            return payload[key] ? JSON.parse(payload[key]) : null;
+        }
+        catch (error) {
+            return null;
+        }
+    }
+
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
-        const data = await this.srv.list(page, size);
+        const filter = this.getObj(req.query, 'filter');
+        const sort = this.getObj(req.query, 'sort');
+        const data = await await this.srv.list(page, size, filter, sort);
         res.json(data);
     }
 

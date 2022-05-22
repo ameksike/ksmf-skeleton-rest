@@ -13,16 +13,25 @@ This is a template to create REST API services in a simple and easy way.
 
 ## Demo
 - npm run dev
+- GET http://localhost:3005/api/v1/doc
 - GET http://localhost:3005/api/v1/user
+- GET http://localhost:3005/api/v1/tag
 - GET http://localhost:3005/api/v1/comment
-- GET http://localhost:3005/api/v1/comment/tag
+- GET http://localhost:3005/api/v1/comment/1/tag
 
 ## Test
 - npm run test
 
-## DB
+## Data Base Migrations 
 - npx sequelize-cli model:generate --name user --attributes name:string,age:integer,job:string,note:text
 - npx sequelize-cli model:generate --name comment --attributes comment:text,userId:integer,flightId:integer,tagId:integer
 - npx sequelize-cli model:generate --name tag --attributes name:string
-- npx sequelize-cli migration:generate --name 
+- npx sequelize-cli model:generate --name tagComment --attributes commentId:integer,tagId:integer
 - npx sequelize-cli db:migrate
+
+## Data Base Seeders
+- npx sequelize-cli seed:generate --name add-user
+- npx sequelize-cli seed:generate --name add-tag
+- npx sequelize-cli seed:generate --name add-comment
+- npx sequelize-cli seed:generate --name add-comment-tag
+- npx sequelize-cli db:seed:all

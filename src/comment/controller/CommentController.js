@@ -1,12 +1,13 @@
 /*
  * @author		Antonio Membrides Espinosa
  * @email		tonykssa@gmail.com
- * @date		20/08/2021
+ * @date		21/05/2022
  * @copyright  	Copyright (c) 2020-2030
  * @license    	GPL
  * @version    	1.0 
  * */
 const KsMf = require('ksmf');
+const commentValidator = require('../validator/Comment');
 class CommentController extends KsMf.app.Controller {
 
     async init() {
@@ -17,26 +18,50 @@ class CommentController extends KsMf.app.Controller {
             name: 'CommentService',
             path: 'service',
             module: this.module,
-            options: {
-                opt: this.opt
-            },
             dependency: {
                 dao: 'dao',
                 helper: 'helper'
             }
         });
+        //... initialize validations
+        this.initValidations();
+    }
+
+    /**
+     * @description define groups of validations based on a certain action
+     */
+    initValidations() {
+        this.middleware.insert = commentValidator.all;
+        this.middleware.update = commentValidator.optional;
+    }
+
+    /**
+     * @description get safe JSON decode
+     * @param {OBJECT} payload 
+     * @param {STRING} key 
+     * @returns 
+     */
+    getObj(payload, key) {
+        try {
+            return payload[key] ? JSON.parse(payload[key]) : null;
+        }
+        catch (error) {
+            return null;
+        }
     }
 
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
-        const data = await this.srv.list(page, size);
+        const filter = this.getObj(req.query, 'filter');
+        const sort = this.getObj(req.query, 'sort');
+        const data = await await this.srv.configure().list(page, size, filter, sort);
         res.json(data);
     }
 
     async select(req, res) {
         const id = req.params['id'];
-        const data = await this.srv.select(id);
+        const data = await this.srv.configure().select(id);
         res.json(data);
     }
 

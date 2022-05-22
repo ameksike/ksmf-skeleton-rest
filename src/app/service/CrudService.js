@@ -12,20 +12,27 @@ class CrudService {
      * @description initialize the service 
      */
     constructor(config) {
-        this.opt = config ? config.opt : {};
         this.dao = config ? config.dao : null;
         this.table = 'Crud';
         this.idField = 'id';
+        this.include = [];
     }
 
     /**
      * @description list all entities 
      */
-    async list() {
+    async list(page = 0, size = 10, filter = null, sort = null) {
+        const offset = page * size;
+        const limit = size;
+        const where = {};
         if (!this.dao) return null;
         const model = this.dao.models[this.table];
-        const data = await model.findAll();
-        return data;
+        if (filter) {
+            for (let criterion in filter) {
+                where[criterion] = filter[criterion];
+            }
+        }
+        return await model.findAll({ offset, limit, where, order: sort, include: this.include });
     }
 
     /**
@@ -36,10 +43,9 @@ class CrudService {
         if (!this.dao) return null;
         try {
             const model = this.dao.models[this.table];
-            const data = await model.create({
+            return await model.create({
                 ...payload
             });
-            return data;
         } catch (error) {
             const logger = this.getLogger();
             if (logger) {
@@ -69,7 +75,7 @@ class CrudService {
                 data = await model.findOne({ where });
             }
             return result & result[0] ? data : null;
-        } catch (error) { 
+        } catch (error) {
             const logger = this.getLogger();
             if (logger) {
                 logger.prefix('CRUD.Service').error(error);
@@ -126,7 +132,7 @@ class CrudService {
                 [Sequelize.Op.eq]: value.toString()
             }
         }
-        const result = await model.findAll({ where });
+        const result = await model.findAll({ where, include: this.include });
         return value instanceof Array ? result : result[0];
     }
 

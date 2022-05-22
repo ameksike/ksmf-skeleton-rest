@@ -1,12 +1,13 @@
 /*
  * @author		Antonio Membrides Espinosa
  * @email		tonykssa@gmail.com
- * @date		20/03/2022
+ * @date		21/05/2022
  * @copyright  	Copyright (c) 2020-2030
  * @license    	GPL
  * @version    	1.0
  * */
 const KsMf = require('ksmf');
+const userValidator = require('../validator/User');
 class DefaultController extends KsMf.app.Controller {
 
     async init() {
@@ -17,15 +18,12 @@ class DefaultController extends KsMf.app.Controller {
             name: 'UserService',
             path: 'service',
             module: this.module,
-            options: {
-                opt: this.opt
-            },
             dependency: {
                 dao: 'dao',
                 helper: 'helper'
             }
         });
-
+        this.initValidations();
         /**
          * If authentication is required:
          * this.token = await this.service.getAuthorization({
@@ -35,10 +33,35 @@ class DefaultController extends KsMf.app.Controller {
          */
     }
 
+    /**
+     * @description define groups of validations based on a certain action
+     */
+     initValidations() {
+        this.middleware.insert = userValidator.all;
+        this.middleware.update = userValidator.all;
+    }
+
+    /**
+     * @description get safe JSON decode
+     * @param {OBJECT} payload 
+     * @param {STRING} key 
+     * @returns 
+     */
+    getObj(payload, key) {
+        try {
+            return payload[key] ? JSON.parse(payload[key]) : null;
+        }
+        catch (error) {
+            return null;
+        }
+    }
+
     async list(req, res) {
         const page = req.query.page;
         const size = req.query.size;
-        const data = await this.srv.list(page, size);
+        const filter = this.getObj(req.query, 'filter');
+        const sort = this.getObj(req.query, 'sort');
+        const data = await await this.srv.list(page, size, filter, sort);
         res.json(data);
     }
 

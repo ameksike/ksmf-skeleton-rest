@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Comment.belongsToMany(models.tag, { through: 'CommentTag' });
+      Comment.belongsToMany(models.tag, { through: models.tagComment });
+      Comment.hasMany(models.tagComment);
       Comment.belongsTo(models.user);
     }
   }
@@ -19,11 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     comment: DataTypes.TEXT,
     userId: DataTypes.INTEGER,
     flightId: DataTypes.INTEGER,
-    tagId: DataTypes.INTEGER,
     date: {
       defaultValue: Date.now(),
       type: DataTypes.DATE
-    },
+    }
   }, {
     sequelize,
     modelName: 'comment',

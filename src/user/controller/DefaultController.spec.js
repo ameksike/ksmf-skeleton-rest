@@ -11,7 +11,7 @@ const req = supertest(web);
 const baseUrl = '/api/v1/user';
 const models = {};
 const header = { 'Authorization': 'Bearer ' };
-
+//... define INTEGRATION TEST
 describe('INTEGRATION_TEST_User_Default_Controller', () => {
     beforeAll(async () => {
         try {

@@ -1,7 +1,7 @@
 {
   "name": "ksmf-skeleton-rest",
   "version": "1.0.0",
-  "description": "KsMf REST API Skeleton",
+  "description": "This is a template to create REST API services in a simple and easy way",
   "main": "./bin/server.js",
   "scripts": {
     "start": "node ./bin/server.js",
@@ -42,6 +42,8 @@
     "axios": "^0.26.1",
     "express-validator": "^6.14.0",
     "ksmf": "^1.0.51",
+    "mariadb": "^3.0.0",
+    "mysql2": "^2.3.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.19.2",

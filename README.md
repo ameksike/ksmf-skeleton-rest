@@ -1,5 +1,5 @@
 # KsMf REST API Skeleton
-This is a template to create REST API services in a simple and easy way.
+This is a template to create REST API services in a simple and easy way. This project implements an example where three main entities are managed: Users, Tags and Comments. The data is managed using a relational model with support for different database management systems (MySQL, PostgreSQL, SQLite, etc.). This solution provides from its home page access to documentation that helps understand the services, including how to test it.
 
 ## Install 
 - git clone https://github.com/ameksike/ksmf-skeleton-rest.git

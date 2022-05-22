@@ -13,6 +13,7 @@ This is a template to create REST API services in a simple and easy way.
 
 ## Demo
 - npm run dev
+- GET http://localhost:3005/api/v1/doc
 - GET http://localhost:3005/api/v1/user
 - GET http://localhost:3005/api/v1/tag
 - GET http://localhost:3005/api/v1/comment

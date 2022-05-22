@@ -11,35 +11,21 @@ const path = require('path');
 
 class AppModule extends KsMf.app.Module {
     async initApp() {
-        const app = this.helper.get('app').web;
-
-        //...............................
-        /*const swaggerUI = require('swagger-ui-express');
-        const swaggerJsDoc = require('swagger-jsdoc');
-        const config = {
-            definition: {
-                openapi: '3.0.0',
-                info: {
-                    title: 'My API',
-                    description: 'Demo REST API',
-                    contact: 'tonykssa@gmail.com',
-                    version: '1.0.0'
-                },
-                servers: [{
-                    url: "http://localhost:9000"
-                }]
-            },
-            apis: [`${path.join(__dirname, '../user/controller/DefaultController.js')}`]
-        };
-        app.use(
-            '/api/v1/doc',
-            swaggerUI.serve,
-            swaggerUI.setup(swaggerJsDoc(config))
-        );*/
-        //------------------------------
-        /*app.get(/\/((?!(api)).)* /, (req, res) => {
-            res.end('API v1.0.0');
-        });*/
+        const app = this.helper.get('app');
+        const web = app.web;
+        function redirect(req, res) {
+            if (app.cfg && app.cfg.srv && app.cfg.srv.doc && app.cfg.srv.doc.url) {
+                res.writeHead(302, {
+                    location: app.cfg.srv.doc.url,
+                });
+                res.end();
+            } else {
+                res.end('API v1.0.0');
+            }
+        }
+        web.get('/', (req, res) => {
+            redirect(req, res);
+        });
     }
 }
 module.exports = AppModule;

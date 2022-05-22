@@ -1,5 +1,14 @@
 {
     "development": {
+        "port": "3306",
+        "host": "localhost",
+        "database": "mydb",
+        "username": "root",
+        "password": "root",
+        "dialect": "mysql",
+        "protocol": "mysql"
+    },
+    "development_pg": {
         "port": "5432",
         "host": "127.0.0.1",
         "database": "mydb",

@@ -42,6 +42,8 @@
     "axios": "^0.26.1",
     "express-validator": "^6.14.0",
     "ksmf": "^1.0.51",
+    "mariadb": "^3.0.0",
+    "mysql2": "^2.3.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.19.2",

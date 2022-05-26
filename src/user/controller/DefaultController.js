@@ -56,28 +56,63 @@ class DefaultController extends KsMf.app.Controller {
         }
     }
 
+    /**
+     * @description get the user list
+     * @param {OBJECT} req 
+     * @param {OBJECT} res 
+     * @returns {
+     *  page: NUMBER,
+     *  size: NUMBER,
+     *  total: NUMBER,
+     *  data: [USER]
+     * }
+     */
     async list(req, res) {
-        const page = req.query.page;
+        const page = parseInt(req.query.page) || 1;
         const size = req.query.size;
         const filter = this.getObj(req.query, 'filter');
         const sort = this.getObj(req.query, 'sort');
-        const data = await await this.srv.list(page, size, filter, sort);
-        res.json(data);
+        const data = await this.srv.list(page, size, filter, sort);
+        const total = await this.srv.count(filter ? { where: filter } : {});
+        res.json({
+            page,
+            size: parseInt(size || total),
+            total,
+            data
+        });
     }
 
+    /**
+     * @description get the user by id
+     * @param {OBJECT} req 
+     * @param {OBJECT} res 
+     * @returns {OBJECT} USER
+     */
     async select(req, res) {
         const id = req.params['id'];
         const data = await this.srv.select(id);
         res.json(data);
     }
 
+    /**
+     * @description create new user
+     * @param {OBJECT} req 
+     * @param {OBJECT} res 
+     * @returns {OBJECT} USER
+     */
     async insert(req, res) {
         const payload = req.body;
         const data = await this.srv.save(payload);
         this.logger.prefix('User.Controller').info('INSERT', data);
         res.json(data);
     }
-
+    
+    /**
+     * @description update user by id
+     * @param {OBJECT} req 
+     * @param {OBJECT} res 
+     * @returns {OBJECT} USER
+     */
     async update(req, res) {
         const payload = req.body;
         payload.id = payload.id || req.params['id'];
@@ -86,6 +121,12 @@ class DefaultController extends KsMf.app.Controller {
         res.json(data);
     }
 
+    /**
+     * @description delete user by id
+     * @param {OBJECT} req 
+     * @param {OBJECT} res 
+     * @returns {OBJECT} USER
+     */
     async delete(req, res) {
         const id = req.params['id'];
         const data = await this.srv.delete(id);

@@ -21,12 +21,12 @@ class CrudService {
     /**
      * @description list all entities 
      */
-    async list(page = 0, size = 10, filter = null, sort = null) {
-        const offset = page * size;
-        const limit = size;
-        const where = {};
+    async list(page = 1, size = 10, filter = null, sort = null) {
         if (!this.dao) return null;
         const model = this.dao.models[this.table];
+        const offset = (page > 0 ? page - 1 : page) * size;
+        const limit = size;
+        const where = {};
         if (filter) {
             for (let criterion in filter) {
                 where[criterion] = filter[criterion];
@@ -166,6 +166,29 @@ class CrudService {
             return null;
         }
     }
+
+    /**
+     * @description get count of data from model
+     * @param {OBJECT} options 
+     * @param {STRING} options.col specify the column on which you want to call the count() method with the col
+     * @param {BOOLEAN} options.distinct tell Sequelize to generate and execute a COUNT( DISTINCT( lastName ) ) query 
+     * @returns {NUMBER}
+     */
+    async count(options = {}) {
+        if (!this.dao) return null;
+        try {
+            const model = this.dao.models[this.table];
+            return await model.count(options);
+        } catch (error) {
+            const logger = this.getLogger();
+            if (logger) {
+                logger.prefix('CRUD.Service').error(error);
+            }
+            return null;
+        }
+    }
+
+
 
     /**
      * @description Get Logger Object

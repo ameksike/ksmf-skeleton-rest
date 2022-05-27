@@ -6,6 +6,7 @@ module.exports = {
         }
     },
     paths: {
-        ...require('./paths/CommentController')
+        ...require('./paths/CommentController'),
+        ...require('./paths/TagController')
     }
 }

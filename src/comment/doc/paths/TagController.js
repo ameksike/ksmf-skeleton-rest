@@ -1,17 +1,17 @@
 module.exports = {
-    "/api/v1/comment": {
+    "/api/v1/tag": {
         "get": {
-            "tags": ["COMMENT"],
-            "description": "Returns all comments from the system",
+            "tags": ["TAG"],
+            "description": "Returns all tags from the system",
             "responses": {
                 "200": {
-                    "description": "A list of comment.",
+                    "description": "A list of tag.",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/components/schemas/Comment"
+                                    "$ref": "#/components/schemas/Tag"
                                 }
                             }
                         }
@@ -20,8 +20,8 @@ module.exports = {
             }
         },
         "post": {
-            "tags": ["COMMENT"],
-            "description": "create or add a new comment",
+            "tags": ["TAG"],
+            "description": "create or add a new tag",
             "responses": {
                 "200": {
                     "description": "user created",
@@ -29,7 +29,7 @@ module.exports = {
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "$ref": "#/components/schemas/Comment"
+                                "$ref": "#/components/schemas/Tag"
                             }
                         }
                     }
@@ -37,18 +37,18 @@ module.exports = {
             }
         }
     },
-    "/api/v1/comment/:id": {
+    "/api/v1/tag/:id": {
         "get": {
-            "tags": ["COMMENT"],
-            "description": "Select a specific comment by id",
+            "tags": ["TAG"],
+            "description": "Select a specific tag by id",
             "responses": {
                 "200": {
-                    "description": "Comment object.",
+                    "description": "Tag object.",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "$ref": "#/components/schemas/Comment"
+                                "$ref": "#/components/schemas/Tag"
                             }
                         }
                     }
@@ -56,27 +56,27 @@ module.exports = {
             }
         },
         "put": {
-            "tags": ["COMMENT"],
-            "description": "Update comment data by id",
+            "tags": ["TAG"],
+            "description": "Update tag data by id",
             "requestBody": {
                 "required": true,
                 "content": {
                     "application/json": {
                         "schema": {
                             "type": "object",
-                            "$ref": "#/components/schemas/Comment"
+                            "$ref": "#/components/schemas/Tag"
                         }
                     }
                 }
             },
             "responses": {
                 "200": {
-                    "description": "comment updated",
+                    "description": "tag updated",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "$ref": "#/components/schemas/Comment"
+                                "$ref": "#/components/schemas/Tag"
                             }
                         }
                     }
@@ -84,16 +84,16 @@ module.exports = {
             }
         },
         "delete": {
-            "tags": ["COMMENT"],
-            "description": "delete comment by id",
+            "tags": ["TAG"],
+            "description": "delete tag by id",
             "responses": {
                 "200": {
-                    "description": "comment deleted",
+                    "description": "tag deleted",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "$ref": "#/components/schemas/Comment"
+                                "$ref": "#/components/schemas/Tag"
                             }
                         }
                     }

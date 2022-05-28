@@ -53,15 +53,14 @@ class CommentController extends KsMf.app.Controller {
     async list(req, res) {
         this.srv.configure();
         const page = parseInt(req.query.page) || 1;
-        const size = req.query.size;
-        const filter = this.getObj(req.query, 'filter');
-        const sort = this.getObj(req.query, 'sort');
-        const data = await this.srv.list(page, size, filter, sort);
-        const total = await this.srv.count(filter ? { where: filter } : {});
+        const filter = req.query.filter ? JSON.parse(req.query.filter) : "";
+        const data = await this.srv.list(page, req.query.size, filter, req.query.sort);
+        const total = await this.srv.count(req.query.filter ? { where: this.srv.asQuery(filter) } : {});
         res.json({
             page,
-            size: parseInt(size || total),
+            size: parseInt(req.query.size || total),
             total,
+            filter,
             data
         });
     }

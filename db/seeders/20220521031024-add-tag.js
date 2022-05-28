@@ -3,10 +3,13 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('tags', [
-      { name: 'Críticos' },
-      { name: 'Históricos' },
-      { name: 'Literarios' },
-      { name: 'Disertaciones' }
+      { name: 'Critics' },
+      { name: 'Suggestions' },
+      { name: 'Complaints' },
+      { name: 'Dissertations' },
+      { name: 'Claims' },
+      { name: 'Improvements' },
+      { name: 'Control' }
     ], {});
   },
 

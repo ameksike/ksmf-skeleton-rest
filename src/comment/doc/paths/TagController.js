@@ -64,6 +64,17 @@ module.exports = {
         "post": {
             "tags": ["TAG"],
             "description": "create or add a new tag",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/components/schemas/Tag"
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "user created",
@@ -79,7 +90,19 @@ module.exports = {
             }
         }
     },
-    "/api/v1/tag/:id": {
+    "/api/v1/tag/{id}": {
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "Tag ID",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        ],
         "get": {
             "tags": ["TAG"],
             "description": "Select a specific tag by id",

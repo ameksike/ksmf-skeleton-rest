@@ -64,6 +64,14 @@ module.exports = {
         "post": {
             "tags": ["COMMENT"],
             "description": "create or add a new comment",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": require('../schemas/CommentRequest')
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "user created",
@@ -79,7 +87,19 @@ module.exports = {
             }
         }
     },
-    "/api/v1/comment/:id": {
+    "/api/v1/comment/{id}": {
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "Comment ID",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        ],
         "get": {
             "tags": ["COMMENT"],
             "description": "Select a specific comment by id",
@@ -100,6 +120,14 @@ module.exports = {
         "put": {
             "tags": ["COMMENT"],
             "description": "Update comment data by id",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": require('../schemas/CommentRequest')
+                    }
+                }
+            },
             "requestBody": {
                 "required": true,
                 "content": {

@@ -3,13 +3,12 @@ This is a template to create REST API services in a simple and easy way. This pr
 
 ## Install 
 - git clone https://github.com/ameksike/ksmf-skeleton-rest.git
-- cd ksmf-skeleton-rest
 - mv ksmf-skeleton-rest my-project
 - cd my-project
 - npm install
 
 ## Configuration 
-- edit ./cfg/config.json and define database access options
+- edit ```./cfg/config.json``` and define database access options
 - npx sequelize-cli db:migrate
 - npx sequelize-cli db:seed:all
 - npm start

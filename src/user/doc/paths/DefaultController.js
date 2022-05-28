@@ -42,7 +42,7 @@ module.exports = {
                     "schema": {
                         "type": "string"
                     },
-                    "example": '{"age":30,"name":"Lucy Light"}'
+                    "example": '[["job", "dev", "iLike"],["age", 12, "gte"]]'
                 }
             ],
             "responses": {

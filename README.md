@@ -22,33 +22,57 @@ This is a template to create REST API services in a simple and easy way. This pr
 - GET http://localhost:3005/api/v1/comment
 - GET http://localhost:3005/api/v1/comment/1/tag
 
-## Demo query with filters and sorting
-- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId", 666]]&sort=[["date","DESC"]]
-- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId", 666], ["comment", "Lorem ipsum dolor", "iLike"]]&sort=[["date", "DESC"]]
-
-### Filters
+## Filters
+The filters are defined based on an array data structure, each record define a query criterion as a list of 3 element [field, value, operator]. The filters are specified as one more variable within the url of the endopint list.
 ```
 filter = [ 
     [
         field: STRING
         value: STRING 
-        operator: STRING [OPTIONAL] default: eq
+        operator: STRING [OPTIONAL] default: eq, values: eq,ne,is,not,or,gt,lt,between,in,like,regexp 
     ],
     ...
 ]
 ```
+For more information about the available operators, see: [operators on filters](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators).
 
-### Sort
+### Filters examples
+- GET http://localhost:3005/api/v1/comment?filter=[["flightId", 666]]
+- GET localhost:3005/api/v1/comment?filter=[["flightId", [666, 222], "in"]]
+- GET http://localhost:3005/api/v1/comment?filter=[["date", "2022-05-27", "gte"], ["comment", "Cupidatat", "iLike"]]
+
+
+## Sort
+It is possible to sort the data based on different criteria. The criteria are described as an array of elements. These elements are arrays in the form [column or field name, direction].
 ```
 sort = [ 
     [
         field: STRING
-        mode: STRING [OPTIONAL] default: ASC
+        direction: STRING [OPTIONAL] default: ASC, values: ASC|DESC
     ],
     ...
 ]
 ```
+The column or field name will be escaped correctly and the direction will be checked in a whitelist of valid directions (such as ASC, DESC, NULLS FIRST, etc).
 
+### Sort examples
+- GET http://localhost:3005/api/v1/comment?sort=[["date"]]
+- GET http://localhost:3005/api/v1/comment?sort=[["date","DESC"], ["comment","ASC"]]
+
+
+
+
+
+## Pagination 
+The **page** and **size** options allow you to work with limiting and pagination. The size option defines the limit of rows to get from the server and with **page** you can navigate through data for get better performance.
+
+- GET http://localhost:3005/api/v1/comment?page=1&size=3
+- GET http://localhost:3005/api/v1/comment?page=2&size=3
+- GET http://localhost:3005/api/v1/comment?page=3&size=3
+
+### Demo query with filters and sorting
+- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId",666]]&sort=[["date","DESC"]]
+- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId",666], ["comment","Lorem ipsum dolor", "iLike"]]&sort=[["date","DESC"]]
 
 
 ## Test

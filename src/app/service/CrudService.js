@@ -26,13 +26,13 @@ class CrudService {
         const model = this.dao.models[this.table];
         const offset = (page > 0 ? page - 1 : page) * size;
         const limit = size;
-        const where = {};
-        if (filter) {
-            for (let criterion in filter) {
-                where[criterion] = filter[criterion];
-            }
-        }
-        return await model.findAll({ offset, limit, where, order: sort, include: this.include });
+        return await model.findAll({
+            offset,
+            limit,
+            where: this.asQuery(filter),
+            order: this.asOrder(sort),
+            include: this.include
+        });
     }
 
     /**
@@ -188,7 +188,42 @@ class CrudService {
         }
     }
 
+    /**
+     * @description get filters as query 
+     *              see: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
+     * @param {ARRAY} filter 
+     */
+    asQuery(filter) {
+        if (!filter) return {};
+        filter = typeof (filter) === 'string' ? JSON.parse(filter) : filter;
+        const Sequelize = this.dao.manager;
+        const model = this.dao.models[this.table];
+        const where = {};
+        for (let i in filter) {
+            let [field, value, operator = 'eq'] = filter[i];
+            if (model.hasOwnProperty(field)) {
+                value = ['like', 'ilike'].includes((operator || '').toLowerCase()) ? '%' + value + '%' : value;
+                if (Sequelize.Op[operator]) {
+                    where[field] = {
+                        [Sequelize.Op[operator]]: value
+                    }
+                }
+            }
+        }
+        return where;
+    }
 
+    /**
+     * @description get sort obtion as order format
+     *              see: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#ordering-and-grouping
+     * @param {ARRAY} sort 
+     */
+    asOrder(sort) {
+        if (!sort) return [];
+        const model = this.dao.models[this.table];
+        const list = typeof (sort) === 'string' ? JSON.parse(sort) : sort;
+        return list.filter(item => item && item[0] && model.hasOwnProperty(item[0]));
+    }
 
     /**
      * @description Get Logger Object

@@ -23,7 +23,9 @@ This is a template to create REST API services in a simple and easy way. This pr
 - GET http://localhost:3005/api/v1/comment/1/tag
 
 ## Demo query with filters and sorting
-- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter={"flightId":666}&sort=[["date","DESC"]]
+- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId", 666]]&sort=[["date","DESC"]]
+- GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId", 666], ["comment", "Lorem ipsum dolor", "iLike"]]&sort=[["date", "DESC"]]
+
 
 ## Test
 - npm run test

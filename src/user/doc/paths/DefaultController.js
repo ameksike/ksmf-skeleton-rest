@@ -90,7 +90,19 @@ module.exports = {
             }
         }
     },
-    "/api/v1/user/:id": {
+    "/api/v1/user/{id}": {
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "User ID",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        ],
         "get": {
             "tags": ["USER"],
             "description": "Select a specific user by id",

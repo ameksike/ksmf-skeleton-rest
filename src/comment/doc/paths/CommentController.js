@@ -68,7 +68,7 @@ module.exports = {
                 "required": true,
                 "content": {
                     "application/json": {
-                        "schema": require('../schemas/CommentRequest') 
+                        "schema": require('../schemas/CommentRequest')
                     }
                 }
             },
@@ -87,7 +87,19 @@ module.exports = {
             }
         }
     },
-    "/api/v1/comment/:id": {
+    "/api/v1/comment/{id}": {
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "Comment ID",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        ],
         "get": {
             "tags": ["COMMENT"],
             "description": "Select a specific comment by id",

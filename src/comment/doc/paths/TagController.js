@@ -90,7 +90,19 @@ module.exports = {
             }
         }
     },
-    "/api/v1/tag/:id": {
+    "/api/v1/tag/{id}": {
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "description": "Tag ID",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        ],
         "get": {
             "tags": ["TAG"],
             "description": "Select a specific tag by id",

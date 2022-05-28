@@ -64,6 +64,14 @@ module.exports = {
         "post": {
             "tags": ["COMMENT"],
             "description": "create or add a new comment",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": require('../schemas/CommentRequest') 
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "user created",

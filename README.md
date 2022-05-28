@@ -26,6 +26,30 @@ This is a template to create REST API services in a simple and easy way. This pr
 - GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId", 666]]&sort=[["date","DESC"]]
 - GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId", 666], ["comment", "Lorem ipsum dolor", "iLike"]]&sort=[["date", "DESC"]]
 
+### Filters
+```
+filter = [ 
+    [
+        field: STRING
+        value: STRING 
+        operator: STRING [OPTIONAL] default: eq
+    ],
+    ...
+]
+```
+
+### Sort
+```
+sort = [ 
+    [
+        field: STRING
+        mode: STRING [OPTIONAL] default: ASC
+    ],
+    ...
+]
+```
+
+
 
 ## Test
 - npm run test

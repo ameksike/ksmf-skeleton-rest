@@ -201,7 +201,7 @@ class CrudService {
         const where = {};
         for (let i in filter) {
             let [field, value, operator = 'eq'] = filter[i];
-            if (model.hasOwnProperty(field)) {
+            if (model.tableAttributes.hasOwnProperty(field)) {
                 value = ['like', 'ilike'].includes((operator || '').toLowerCase()) ? '%' + value + '%' : value;
                 if (Sequelize.Op[operator]) {
                     where[field] = {
@@ -222,7 +222,7 @@ class CrudService {
         if (!sort) return [];
         const model = this.dao.models[this.table];
         const list = typeof (sort) === 'string' ? JSON.parse(sort) : sort;
-        return list.filter(item => item && item[0] && model.hasOwnProperty(item[0]));
+        return list.filter(item => item && item[0] && model.tableAttributes.hasOwnProperty(item[0]));
     }
 
     /**

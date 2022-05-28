@@ -124,6 +124,14 @@ module.exports = {
                 "required": true,
                 "content": {
                     "application/json": {
+                        "schema": require('../schemas/CommentRequest')
+                    }
+                }
+            },
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
                         "schema": {
                             "type": "object",
                             "$ref": "#/components/schemas/Comment"

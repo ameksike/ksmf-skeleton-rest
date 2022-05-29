@@ -55,8 +55,8 @@ describe('INTEGRATION_TEST_User_Default_Controller', () => {
                     return done(error);
                 }
                 expect(res.status).toBe(200);
-                expect(res.body).toBeInstanceOf(Array);
-                expect(res.body.length > 2).toBe(true);
+                expect(res.body.data).toBeInstanceOf(Array);
+                expect(res.body.data.length > 2).toBe(true);
                 return done();
             });
     });
@@ -98,6 +98,7 @@ describe('INTEGRATION_TEST_User_Default_Controller', () => {
         req
             .put(baseUrl + '/1')
             .send({
+                name: 'Oto',
                 age: 44
             })
             .end((error, res) => {

@@ -20,8 +20,7 @@ const commentService = app.helper.get({
 //... define tests
 describe('UNIT_TEST_CommentService', () => {
    it('List', async done => {
-      //const data = await commentService.list();
-      //expect(data).toBeInstanceOf(Object);
+      expect(commentService).toBeInstanceOf(Object);
       done();
    });
 });

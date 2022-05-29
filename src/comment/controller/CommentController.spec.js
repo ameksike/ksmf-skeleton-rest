@@ -69,22 +69,23 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                     return done(error);
                 }
                 expect(res.status).toBe(200);
-                expect(res.body).toBeInstanceOf(Array);
-                expect(res.body.length > 2).toBe(true);
+                expect(res.body).toBeInstanceOf(Object);
+                expect(res.body.data).toBeInstanceOf(Array);
+                expect(res.body.data.length > 2).toBe(true);
                 return done();
             });
     });
 
     it('List of comments with filters and sort', (done) => {
         req
-            .get(baseUrl + '?page=0&size=10&filter={"flightId":222,"userId":1}&sort=[["id", "DESC"]]')
+            .get(baseUrl + '?page=0&size=10&filter=[["flightId",222]]&sort=[["date","DESC"]]')
             .end((error, res) => {
                 if (error) {
                     return done(error);
                 }
                 expect(res.status).toBe(200);
-                expect(res.body).toBeInstanceOf(Array);
-                expect(res.body.length === 2).toBe(true);
+                expect(res.body.data).toBeInstanceOf(Array);
+                expect(res.body.data.length === 2).toBe(true);
                 return done();
             });
     });

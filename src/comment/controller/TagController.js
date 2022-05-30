@@ -42,13 +42,15 @@ class TagController extends KsMf.app.Controller {
     async list(req, res) {
         const page = parseInt(req.query.page) || 1;
         const filter = req.query.filter ? JSON.parse(req.query.filter) : "";
-        const data = await this.srv.list(page, req.query.size, filter, req.query.sort);
+        const sort = req.query.sort ? JSON.parse(req.query.sort) : "";
+        const data = await this.srv.list(page, req.query.size, filter, sort);
         const total = await this.srv.count(req.query.filter ? { where: this.srv.asQuery(filter) } : {});
         res.json({
             page,
             size: parseInt(req.query.size || total),
             total,
             filter,
+            sort,
             data
         });
     }

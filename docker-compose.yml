@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  db:
+    image: mariadb:10.4.24
+    ports:
+      - "3303:3306"
+    volumes:
+      - ./tmp/mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=pass
+      - MARIADB_PASSWORD=pass
+      - MARIADB_USER=dev
+      - MARIADB_DATABASE=api
+    command: mysqld --sql_mode=""
+    healthcheck: 
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/opt/app
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=root
+      - DB_PASSWORD=ewas_mgmt
+      - DB_PORT=3306
+      - DB_DATABASE=api
+      - DB_DIALECT=mysql
+      - NODE_TLS_REJECT_UNAUTHORIZED=0

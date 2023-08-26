@@ -13,6 +13,13 @@ This is a template to create REST API services in a simple and easy way. This pr
 - npx sequelize-cli db:seed:all
 - npm start
 
+## Docker
+    $ docker-compose up -d db
+    $ docker-compose stop db
+    $ docker-compose -f docker-compose.yml up -d api
+    $ docker-compose -f docker-compose.yml stop api
+    $ docker logs oauth-server-api-1 -f
+
 ## Demo run
 - npm run dev
 - GET http://localhost:3005/api/v1/doc
@@ -37,7 +44,7 @@ For more information about the available operators, see: [operators on filters](
 
 ### Filters examples
 - GET http://localhost:3005/api/v1/comment?filter=[["flightId", 666]]
-- GET localhost:3005/api/v1/comment?filter=[["flightId", [666, 222], "in"]]
+- GET http://localhost:3005/api/v1/comment?filter=[["flightId", [666, 222], "in"]]
 - GET http://localhost:3005/api/v1/comment?filter=[["date", "2022-05-27", "gte"], ["comment", "Cupidatat", "iLike"]]
 
 

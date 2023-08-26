@@ -1,0 +1,275 @@
+paths:
+  /v1/domain/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The Credential ID
+        
+    get:
+      tags:
+        - Domain
+      description: 
+          Select a domain. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain) 
+      parameters:
+        - in: path
+          name: id
+          schema: 
+            type: integer
+          required: true
+          description: Numeric ID of the Domain to get
+      responses:
+        200:
+          description: Domain entity
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Domain'
+                example:
+                  $ref: '#/components/examples/Domain'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+
+    put:
+      description:
+          Edit or update a domain. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain) 
+      produces:
+        - application/json
+      tags:
+        - Domain
+
+      parameters:
+        - in: query
+          name: auto
+          schema: 
+            type: boolean
+            enum: [true, false]
+            default: false
+          required: false
+          description: If set, allows automatic configuration, such as generating AS certificates and URLs, and automatic configuration based on external metadata.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Domain'
+            example: 
+              $ref: '#/components/examples/Domain'
+            encoding:
+              contentType: application/json
+
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  format: string
+                  description: The domain name is type varchar(254), it is a nominal or semantic identifier, it should be unique.
+                idp_type:
+                  type: string
+                  format: string
+                  default: SAML
+                  enum: [SAML, BASIC]
+                  description:  It is a varchar(254) field. It describes the required protocol for communication between IDP and AS. For further information in regard to the allow protocols, see the section named as "Auth Protocols". By default it should be SAML.
+                idp_url_metadata:
+                  type: string
+                  format: binary
+                  description: It is file .xml extension, which contain the IDP metadata.
+                as_cert:
+                  type: string
+                  format: binary
+                  description: It is file .pem extension, which contain the public certificate value from the AS. It is required for communication between IDP and AS. 
+                as_key:
+                  type: string
+                  format: binary
+                  description: It is file .pem / .key extension, which contain the private certificate value from the AS. It is required for communication between IDP and AS. 
+
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
+            example: 
+              $ref: '#/components/examples/Domain'
+
+      responses:
+        200:
+          description: Access token, refresh token and user data
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Domain'
+                example:
+                  $ref: '#/components/examples/Domain'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+
+    delete:
+      description:
+          Delete or remove a domain. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain) 
+      tags:
+        - Domain
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          schema: 
+            type: integer
+          required: true
+          description: Numeric ID of the Domain to get
+      responses:
+        200:
+          description: The deleted Domain entity
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Domain'
+                example:
+                  $ref: '#/components/examples/Domain'
+                  
+  /v1/domain:
+    get:
+      description:
+          Get the domain list. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain). 
+      produces:
+        - application/json
+      tags:
+        - Domain
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
+        - in: query
+          name: group
+          description: Filtering by Group
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: user
+          description: Filtering by Username or Email
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: enterprise
+          description: Filtering by Enterprise ID
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: product
+          description: Filtering by Product ID
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: description
+          description: Filtering by Description
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: name
+          description: Filtering by Name. In this case, you will receive just a record instead of a list.
+          required: false
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: Domain entity. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain) 
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Response'
+                    properties:
+                      data2:
+                        type: array
+                        items:
+                          - $ref: '#/components/schemas/Domain'
+              example:
+                $ref: '#/components/examples/DomainResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+
+    post:
+      description:
+          Create a domain. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain).
+      produces:
+        - application/json
+      tags:
+        - Domain
+      parameters:
+        - in: query
+          name: auto
+          schema: 
+            type: boolean
+            enum: [true, false]
+            default: false
+          required: false
+          description: If set, allows automatic configuration, such as generating AS certificates and URLs, and automatic configuration based on external metadata.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Domain'
+            example: 
+              $ref: '#/components/examples/Domain'
+            encoding:
+              contentType: application/json
+
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  format: string
+                  description: The domain name is type varchar(254), it is a nominal or semantic identifier, it should be unique.
+                idp_type:
+                  type: string
+                  format: string
+                  default: SAML
+                  enum: [SAML, BASIC]
+                  description:  It is a varchar(254) field. It describes the required protocol for communication between IDP and AS. For further information in regard to the allow protocols, see the section named as "Auth Protocols". By default it should be SAML.
+                idp_url_metadata:
+                  type: string
+                  format: binary
+                  description: It is file .xml extension, which contain the IDP metadata.
+                as_cert:
+                  type: string
+                  format: binary
+                  description: It is file .pem extension, which contain the public certificate value from the AS. It is required for communication between IDP and AS. 
+                as_key:
+                  type: string
+                  format: binary
+                  description: It is file .pem / .key extension, which contain the private certificate value from the AS. It is required for communication between IDP and AS. 
+
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
+            example: 
+              $ref: '#/components/examples/Domain'
+
+      responses:
+        200:
+          description: Access token, refresh token and user data
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Domain'
+                example:
+                  $ref: '#/components/examples/Domain'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+

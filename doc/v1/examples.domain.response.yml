@@ -1,0 +1,132 @@
+components:
+  # Reusable examples for data models
+  examples:
+    DomainResponse:
+      size: 2
+      total: 19
+      data:
+        - group: gtd.com
+          name: gb.gtd.com
+          description: SSO GTD
+          as_url_entry: https://auth-dev.qa.ewas.aero/v1/oauth/authorize
+          as_url_token: https://auth-dev.qa.ewas.aero/v1/oauth/token
+          as_url_revoke: https://auth-dev.qa.ewas.aero/v1/oauth/revoke
+          as_url_metadata: https://auth-dev.qa.ewas.aero/v1/oauth/metadata/gb.gtd.com
+          as_url_profile: https://auth-dev.qa.ewas.aero/v1/oauth/profile
+          as_type: OAUTH_AUTHORIZATION_CODE
+          id: 2
+          enterprise_id: 1
+          enterprise:
+            enterprise_name: GTD
+            enterprise_id: 1
+            enterprise_products:
+              - config:
+                  <AcarsMsgAckSecToTimeout>: '600'
+                  <HoldingAirportMaxDistance>: '400'
+                  <NotamExtraTimeInHours>: '3'
+                  Flight Tag: 0,1,2,3,4,5,6,7,8,9
+                product_id: '3'
+                default_profile_id: 11
+              - config:
+                  <NotamExtraTimeInHours>: '3'
+                  UserManual: eWAS_User_Manual
+                  SplashScreen: eWASSplash_iPad
+                  URL: ''
+                  PreferredLocale: en
+                  HashIndex: '0'
+                  HashLength: '12'
+                  NeedsCustomization: '0'
+                  GPS: Ext GPS;0;3
+                  A350: >-
+                    AID
+                    A350;224.224.0.73;51361;500;2000;1096,1088,8,728,948,4,704,1100
+                  ADBP834: >-
+                    AID
+                    ADBP834;127.0.0.1;8888;500;2000;LONGITUDE,LATITUDE,BAROCORRALT,GROUNDSPEED,TRACKTRUE,ACID,FLTNUM,GOGALL
+                  Teledyne: >-
+                    AID
+                    TELEDYNE;50000,50001;500;2000;LONGITUDE,LATITUDE,BAROCORRALT,GROUNDSPEED,TRACKTRUE,ACID,FLTNUM,GOGALL
+                  GOPTitle: Green Operation Panel
+                  defaultMaxDevices: 3
+                product_id: '4'
+                default_profile_id: 47
+              - config:
+                  defaultMaxDevices: 11
+                  flightAcceptanceSignature: checkbox,signature
+                  flightLogSignature: checkbox,signature
+                  notams:
+                    notamFilter:
+                      value: true
+                    notamValidity:
+                      value: false
+                      etd:
+                        value: 24
+                      eta:
+                        value: 24
+                  weightMarginThreshold: 1000
+                  thousandSeparator: .
+                  modules:
+                    - id: dashboard
+                      config: null
+                      type: ''
+                    - id: notamsWeatherBulletins
+                      config: null
+                      type: ''
+                    - id: weather
+                      config: null
+                      type: ''
+                    - id: documents
+                      config: null
+                      type: ''
+                    - id: flightLog
+                      config: null
+                      type: ''
+                    - id: weightAndFuel
+                      config: null
+                      type: ''
+                    - id: ewasPilot
+                      config: null
+                      type: ''
+                  timePickerValue: 120
+                  highlightedNotams: []
+                  clearanceKeywords: []
+                  crewFunctionSignature:
+                    - COMMANDER
+                product_id: '5'
+                default_profile_id: 1414
+              - config: {}
+                product_id: '6'
+                default_profile_id: 1417
+              - config: {}
+                product_id: '7'
+                default_profile_id: 1430
+        - group: 'finnair.com'
+          name: prd.finnair.com
+          description: SSO Finnair
+          as_url_entry: https://auth-dev.qa.ewas.aero/v1/oauth/authorize
+          as_url_token: https://auth-dev.qa.ewas.aero/v1/oauth/token
+          as_url_revoke: https://auth-dev.qa.ewas.aero/v1/oauth/revoke
+          as_url_metadata: https://auth-dev.qa.ewas.aero/v1/oauth/metadata/prd.finnair.com
+          as_url_profile: https://auth-dev.qa.ewas.aero/v1/oauth/profile
+          as_type: test
+          id: 1
+          enterprise_id: 104
+          enterprise:
+            enterprise_name: Finnair Airlines
+            enterprise_id: 104
+            enterprise_products:
+              - config:
+                  expiration: 2m
+                product_id: '3'
+                default_profile_id: 1
+              - config:
+                  <NotamExtraTimeInHours>: '3'
+                  UserManual: eWAS_User_Manual
+                  SplashScreen: eWASSplash_iPad
+                  URL: ''
+                  PreferredLocale: en
+                  HashIndex: '0'
+                  HashLength: '12'
+                  NeedsCustomization: '0'
+                product_id: '4'
+                default_profile_id: 1

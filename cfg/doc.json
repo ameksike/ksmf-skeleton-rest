@@ -1,10 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Demo REST API",
-        "description": "This is a template to create REST API services in a simple and easy way",
-        "contact": "tonykssa@gmail.com",
-        "version": "1.0.0"
+        "contact": "tonykssa@gmail.com"
     },
     "servers": [
         {

@@ -1,0 +1,111 @@
+components:
+  schemas:
+    Domain:
+      type: object
+      description: This is an entity that stores all the relevant information related to Identity Providers, Authorization Servers, Service Providers, and general security values. By providing a flexible and configurable solution, the Domain Entity enhances the system's adaptability to handle different components and configurations, making it a valuable and powerful component in the implementation. For further information about this service, consult [the complete documentation here](/doc/view/pages/02-Domain)
+      properties:
+        id:
+          type: number
+          description: Auto Generated integer identifier.
+        name:
+          type: string
+          description: The domain name is type varchar(254), it is a nominal or semantic identifier, it should be unique.   
+          required: true
+        enterprise_id:
+          type: number
+          description: It is the Enterprise foreign key. This field is optional, but it is recommended setting it.
+        status:
+          type: number
+          default: 1
+          enum: [0,1]
+          description: It is a tinyint field, define if the domain is active or not, possible values are 0 and 1.
+        expiration:
+          type: string
+          description: An optional field using varchar(45), define the expiration time as active domain. Example 480m
+          required: false
+        updatedAt:
+          required: false
+          type: string
+          description: It is a datetime field to describe the last domain update. Example '2023-04-17 09:05:33'
+        createdAt:
+          required: false
+          type: string
+          description: It is a datetime field to describe when the domain was created. Example '2023-04-17 09:05:33'
+
+        as_type:
+          type: string
+          default: OAUTH_AUTHORIZATION_CODE
+          enum: [OAUTH_AUTHORIZATION_CODE,SAML, BASIC]   
+          description: It is a varchar(254) field. It describes the required protocol for communication between SP and AS. For further information in regard to the allow protocols, see the section named as ["Auth Protocols"](/doc/view/pages/05-Constants).
+        as_user_action:
+          type: number
+          enum: [0,1,2,3,4,5]
+          description: It is a tinyint field, which define how the AS should proceed with the user incoming from the IDP. By default it take 2 value, for further information in regard to the allow actions, see the section named as ["AS User Action"](/doc/view/pages/05-Constants). 
+          default: 3
+        as_url_entry:
+          type: string
+          description: It is a longtext field. It describes the entry point from the AS. For instance, in case of having as_type as BASIC, it will be the login URL. 
+        as_url_token:
+          type: string
+          description: It is a longtext field. It defines the AS URL for requesting the access and refresh token.  
+        as_url_revoke:
+          type: string
+          description: It is a longtext field. It defines the logout/SLO URL into the AS server.  
+        as_url_profile:
+          type: string
+          description: It is a longtext field. Defines the entry point in the AS to request the profile data based on a certain token.  
+        as_url_metadata:
+          type: string
+          description: It is a longtext field. Defines the domain metadata URL. It is required for the integration between the AS and IDP, specially in protocolos like SAML.
+        as_cert:
+          type: string
+          required: true
+          description:  It is a longtext field, which contain the public certificate value from the AS. It is required for communication between IDP and AS. 
+        as_key:
+          type: string
+          required: true
+          description: It is a longtext field, which contain the private certificate value from the AS. It is required for communication between IDP and AS. 
+        
+        idp_type:
+          type: string     
+          enum: ['SAML', 'BASIC']   
+          default: 'SAML'
+          description: It is a varchar(254) field. It describes the required protocol for communication between IDP and AS. For further information in regard to the allow protocols, see the section named as "Auth Protocols". By default it should be SAML.
+        idp_issuer:
+          type: string
+          description: It is relative to the IDP, an optional varchar(254) field. It describes the issuer name for the Auth Server in externals IDP. Usually, if it is not set, the issuer name will be the value in as_url_metadata field.
+          required: false
+        idp_attr_map:
+          type: string
+          description: It is an optional longtext field. It describes in a JSON format how the user attributes from an IDP will map to the expected fields of the Auth Server. Example ```{"mail":"email","firstName":"givenName","lastName":"sn","role":"profile"}``` 
+        idp_role_map:
+          type: string
+          description:  It is an optional longtext field. It describes in a JSON format how the incoming role value from IDP is mapped to an expected role in the AS. Example ```{"W2F":"PILOT W2F","PAL":"PILOT PAL"}```
+        idp_identifier_format:
+          type: string
+        idp_url_entry: 
+          type: string
+          description: It is an optional longtext field. It describes the entry point URL of an external IDP. It should be taken from the IDP metadata, and there is also an endpoint that automates the import of IDP metadata.
+        idp_url_logout:
+          type: string
+          description: It is an optional longtext field. It describes the logout URL of an external IDP. It should be taken from the IDP metadata.
+        idp_url_login:
+          type: string
+          description: It is an optional longtext field. It describes the login URL of an external IDP. It should be taken from the IDP metadata.
+        idp_url_failure:
+          type: string
+          description: It is an optional longtext field. It describes the failure URL of an external IDP. It should be taken from the IDP metadata.
+        idp_url_metadata:
+          type: string
+          description: It is an optional longtext field. It describes the metadata content or URL of an external IDP. It should be taken from the IDP metadata.
+        idp_cert:
+          type: string
+          required: true
+          description: It is a longtext field, which contain the public certificate value from the IDP. It is required for communication between IDP and AS. It should be taken from the IDP metadata, and there is also an endpoint that automates the import of IDP metadata.
+        sp_verify:
+          type: number
+          enum: [0,1,2]
+          default: 0
+          required: false
+          description: It is a tinyint field, which define if the credential from the SP will be verified or not. By default it take o value, for further information in regard to the allow protocols, see the section named as ["SP Verify Options"](/doc/view/pages/05-Constants). 
+

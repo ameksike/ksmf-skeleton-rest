@@ -1,35 +1,35 @@
 {
-    "development": {
-        "port": "3306",
-        "host": "localhost",
-        "database": "mydb",
-        "username": "root",
-        "password": "root",
-        "dialect": "mysql",
-        "protocol": "mysql"
-    },
-    "development_pg": {
-        "port": "5432",
-        "host": "127.0.0.1",
-        "database": "mydb",
-        "username": "postgres",
-        "password": "postgres",
-        "dialect": "postgres",
-        "protocol": "postgres"
-    },
-    "production": {
-        "use_env_variable": "DATABASE_AWS",
-        "dialect": "postgres",
-        "dialectOptions": {
-            "ssl": {
-                "rejectUnauthorized": false
-             }
-        }
-    },
-    "test": {
-        "dialect": "sqlite",
-        "protocol": "sqlite",
-        "storage": ":memory:",
-        "logging": false
-    }
+	"default": {
+		"from": "env",
+		"db": {
+			"port": "3303",
+			"host": "localhost",
+			"database": "DB_NAME",
+			"username": "DB_USER",
+			"password": "DB_PASS",
+			"dialect": "mysql",
+			"protocol": "mysql"
+		},
+		"import": [
+			"cfg/constant.json",
+			"cfg/log.json"
+		]
+	},
+	"production": {
+		"from": "env",
+		"db": {
+			"url": "DATABASE_AWS",
+			"dialect": "postgres",
+			"dialectOptions": {
+				"ssl": {
+					"rejectUnauthorized": false
+				}
+			}
+		}
+	},
+	"test": {
+		"dialect": "sqlite",
+		"storage": ":memory:",
+		"logging": false
+	}
 }

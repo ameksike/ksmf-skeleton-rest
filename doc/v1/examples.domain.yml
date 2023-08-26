@@ -1,0 +1,30 @@
+components:
+  examples:
+    Domain:
+      idp_attr_map: '{"mail":"email","firstName":"givenName","lastName":"sn"}'
+      idp_role_map: null
+      as_user_action: 3
+      sp_verify: 0
+      status: 1
+      expiration: 480m
+      id: 23
+      idp_type: SAML
+      as_type: OAUTH_AUTHORIZATION_CODE
+      as_url_entry: https://auth-dev.qa.ewas.aero/v1/oauth/authorize
+      as_url_token: https://auth-dev.qa.ewas.aero/v1/oauth/token
+      as_url_revoke: https://auth-dev.qa.ewas.aero/v1/oauth/revoke
+      as_url_profile: https://auth-dev.qa.ewas.aero/v1/oauth/profile
+      as_url_metadata: https://auth-dev.qa.ewas.aero/v1/oauth/metadata/hl.thy.com
+      idp_identifier_format: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+      idp_url_entry: https://thy.com/idp/saml2/idp/SSOService.php
+      idp_url_logout: https://thy.com/idp/saml2/idp/SingleLogoutService.php
+      idp_url_login: hhttps://thy.com/idp/saml2/idp/SSOService.php
+      idp_cert: >-
+        MIICmjCCAYJ278DjPS2lwEAATJLwxZtoAv6PNs188hvT1tfMLPUX4m35qaGAU48PwCL7L3cRHYs9wZWc0ifXZcBENLtHYCLi5txR8c5lyHB9d3AQHzKHMFNjLswn5HsckKg83RH7+eVqHqGw==
+      idp_url_metadata: https://thy.com/idp/saml2/idp/metadata.php
+      enterprise_id: '103'
+      name: hl.thy.com
+      as_cert: "-----BEGIN CERTIFICATE-----\r\nCSqGSIb3DQEB\rEfDOax2pQU8AZBzX0l6lHOfwpR/I0w6gAB+6C246QXPwHBg==\r\n-----END CERTIFICATE-----\r\n"
+      as_key: "-----BEGIN RSA PRIVATE KEY-----\r\nMIIEpAIQ3KDOax2pQU8AZBzX0jSNaYZTvgr4yAxGU\r\ndt97WowrBcUvkzYiw8AkZeLpnLFup97sKp37wODA==\r\n-----END RSA PRIVATE KEY-----\r\n"
+      updatedAt: '2023-08-01T12:21:07.883Z'
+      createdAt: '2023-08-01T12:21:07.883Z'

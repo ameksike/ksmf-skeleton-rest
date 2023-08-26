@@ -7,6 +7,7 @@
     "start": "node ./bin/server.js",
     "dev": "nodemon ./bin/server.js",
     "test": "jest",
+    "db:seed:all": "npx sequelize-cli db:seed:all",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "db:migrate:status": "npx sequelize-cli db:migrate:status",
@@ -38,19 +39,19 @@
   "devDependencies": {
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
-    "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.1.6",
     "supertest": "^6.1.3"
   },
   "dependencies": {
     "axios": "^0.26.1",
     "express-validator": "^6.14.0",
-    "ksmf": "^1.0.51",
+    "ksmf": "^1.2.6",
     "mariadb": "^3.0.0",
     "mysql2": "^2.3.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.4.1",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0"
   }

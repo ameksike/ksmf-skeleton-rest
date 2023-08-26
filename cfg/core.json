@@ -4,9 +4,11 @@
         "port": 3005,
         "host": "localhost",
         "protocol": "http",
-        "import": [
-            "cfg/config.json"
-        ],
+        "import": {
+            "db": "cfg/db.js",
+            "log": "cfg/config.json",
+            "constant": "cfg/config.json"
+        },
         "doc": {
             "url": "/api/v1/doc",
             "src": "cfg/doc.json"
@@ -35,9 +37,9 @@
             "onLoadedModules": [
                 "dao.wrapper"
             ],
-			"onInitApp": [
+            "onInitApp": [
                 "logger.wrapper"
-			],
+            ],
             "onInitCompleted": [
                 "doc.wrapper"
             ],
@@ -50,9 +52,9 @@
         },
         "helper": {
             "utl": {
-				"name": "ksmf",
-				"type": "lib",
-				"namespace": "app.Utl"
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "app.Utl"
             },
             "dao": {
                 "name": "ksmf",

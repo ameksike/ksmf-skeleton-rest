@@ -20,14 +20,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3005:3005"
     volumes:
       - ./:/opt/app
     environment:
-      - DB_HOST=mariadb
-      - DB_USER=root
-      - DB_PASSWORD=ewas_mgmt
-      - DB_PORT=3306
-      - DB_DATABASE=api
+      - DB_NAME=api
+      - DB_USER=dev
+      - DB_PASS=pass
+      - DB_PORT=3303
+      - DB_HOST=db
       - DB_DIALECT=mysql
-      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - MyAPI_URL=https://reqres.in
+      - MyAPI_CLIENT_ID=4h354534y5345345
+      - MyAPI_CLIENT_SECRET=wertwert24t432btrg234tr34234r23g4t2hb34

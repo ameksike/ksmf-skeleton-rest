@@ -19,6 +19,8 @@ This is a template to create REST API services in a simple and easy way. This pr
     $ docker-compose -f docker-compose.yml up -d api
     $ docker-compose -f docker-compose.yml stop api
     $ docker logs oauth-server-api-1 -f
+    $ docker-compose run -it api /bin/ash
+    $ docker-compose build --no-cache api
 
 ## Demo run
 - npm run dev

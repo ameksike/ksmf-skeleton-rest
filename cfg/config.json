@@ -2,12 +2,12 @@
 	"default": {
 		"from": "env",
 		"db": {
-			"port": "3303",
-			"host": "localhost",
+			"host": "DB_HOST",
+			"port": "DB_PORT",
 			"database": "DB_NAME",
 			"username": "DB_USER",
 			"password": "DB_PASS",
-			"dialect": "mysql",
+			"dialect": "DB_DIALECT",
 			"protocol": "mysql"
 		},
 		"import": [

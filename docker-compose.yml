@@ -19,7 +19,6 @@ services:
     command: mysqld --sql_mode=""
     networks:
       - app-net
-
   api:
     build:
       context: .

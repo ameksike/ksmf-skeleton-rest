@@ -29,6 +29,7 @@ This is a template to create REST API services in a simple and easy way. This pr
 - GET http://localhost:3005/api/v1/tag
 - GET http://localhost:3005/api/v1/comment
 - GET http://localhost:3005/api/v1/comment/1/tag
+- https://app.forestadmin.com/Ksike
 
 ## Filters
 The filters are defined based on an array data structure, each record define a query criterion as a list of 3 element [field, value, operator]. The filters are specified as one more variable within the url of the endopint list.

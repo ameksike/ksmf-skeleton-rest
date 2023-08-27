@@ -9,13 +9,17 @@
  * */
 try {
     const KsMf = require('ksmf');
-    const app = new KsMf.app.WEB(__dirname + "/../");
-    module.exports = app.run();
+    const path = require('path');
+    const dir = path.resolve(__dirname + "/../");
+    const app = (new KsMf.app.WEB(dir)).initConfig();
+    const opt = app.cfg.srv.db;
+    opt.directory = path.join(dir, "db/models");
+    KsMf.dao.Sequelize.process(opt, app.helper?.get("logger"));
 }
 catch (error) {
     console.log({
         level: 1,
-        src: "bin.server",
+        src: "bin.db",
         error
     });
 }

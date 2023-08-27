@@ -68,9 +68,6 @@ The column or field name will be escaped correctly and the direction will be che
 - GET http://localhost:3005/api/v1/comment?sort=[["date","DESC"], ["comment","ASC"]]
 
 
-
-
-
 ## Pagination 
 The **page** and **size** options allow you to work with limiting and pagination. The size option defines the limit of rows to get from the server and with **page** you can navigate through data for get better performance.
 
@@ -92,7 +89,6 @@ The **page** and **size** options allow you to work with limiting and pagination
 - npx sequelize-cli model:generate --name tag --attributes name:string
 - npx sequelize-cli model:generate --name tagComment --attributes commentId:integer,tagId:integer
 
-
 - npm run db:model:generate service --attributes name:string
 - npx sequelize-cli db:migrate
 
@@ -102,6 +98,3 @@ The **page** and **size** options allow you to work with limiting and pagination
 - npx sequelize-cli seed:generate --name add-comment
 - npx sequelize-cli seed:generate --name add-comment-tag
 - npx sequelize-cli db:seed:all
-
-
-npm install @forestadmin/agent @forestadmin/datasource-sequelize

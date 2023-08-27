@@ -6,18 +6,22 @@
         "protocol": "http",
         "import": {
             "db": "cfg/db.js",
-            "log": "cfg/config.json",
-            "constant": "cfg/config.json"
+            "log": "cfg/log.json",
+            "constant": "cfg/constant.json"
         },
         "doc": {
             "url": "/api/v1/doc",
             "src": "cfg/doc.json"
         },
+        "cors": [
+            "https://app.forestadmin.com"
+        ],
         "module": {
             "load": [
                 "user",
                 "comment",
-                "app"
+                "app",
+                "forest"
             ]
         },
         "event": {

@@ -91,6 +91,9 @@ The **page** and **size** options allow you to work with limiting and pagination
 - npx sequelize-cli model:generate --name comment --attributes comment:text,userId:integer,flightId:integer,tagId:integer
 - npx sequelize-cli model:generate --name tag --attributes name:string
 - npx sequelize-cli model:generate --name tagComment --attributes commentId:integer,tagId:integer
+
+
+- npm run db:model:generate service --attributes name:string
 - npx sequelize-cli db:migrate
 
 ## Create Data Base Seeders
@@ -99,3 +102,6 @@ The **page** and **size** options allow you to work with limiting and pagination
 - npx sequelize-cli seed:generate --name add-comment
 - npx sequelize-cli seed:generate --name add-comment-tag
 - npx sequelize-cli db:seed:all
+
+
+npm install @forestadmin/agent @forestadmin/datasource-sequelize

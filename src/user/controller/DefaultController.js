@@ -68,19 +68,24 @@ class DefaultController extends KsMf.app.Controller {
      * }
      */
     async list(req, res) {
-        const page = parseInt(req.query.page) || 1;
-        const filter = req.query.filter ? JSON.parse(req.query.filter) : "";
-        const sort = req.query.sort ? JSON.parse(req.query.sort) : "";
-        const data = await this.srv.list(page, req.query.size, filter, sort);
-        const total = await this.srv.count(req.query.filter ? { where: this.srv.asQuery(filter) } : {});
-        res.json({
-            page,
-            size: parseInt(req.query.size || total),
-            total,
-            filter,
-            sort,
-            data
-        });
+        try {
+            const page = parseInt(req.query.page) || 1;
+            const filter = req.query.filter ? JSON.parse(req.query.filter) : "";
+            const sort = req.query.sort ? JSON.parse(req.query.sort) : "";
+            const data = await this.srv.list(page, req.query.size, filter, sort);
+            const total = await this.srv.count(req.query.filter ? { where: this.srv.asQuery(filter) } : {});
+            res.json({
+                page,
+                size: parseInt(req.query.size || total),
+                total,
+                filter,
+                sort,
+                data
+            });
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 
     /**
@@ -104,7 +109,7 @@ class DefaultController extends KsMf.app.Controller {
     async insert(req, res) {
         const payload = req.body;
         const data = await this.srv.save(payload);
-        this.logger.prefix('User.Controller').info('INSERT', data);
+        this.logger?.info(data, payload);
         res.json(data);
     }
     

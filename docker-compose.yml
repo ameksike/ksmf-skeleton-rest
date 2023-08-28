@@ -1,0 +1,43 @@
+version: "3.8"
+
+networks:
+  app-net:
+    driver: bridge
+
+services:
+  db:
+    image: mariadb:10.4.24
+    ports:
+      - "3303:3306"
+    volumes:
+      - ./tmp/mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=pass
+      - MARIADB_PASSWORD=pass
+      - MARIADB_USER=dev
+      - MARIADB_DATABASE=api
+    command: mysqld --sql_mode=""
+    networks:
+      - app-net
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"
+    volumes:
+      - ./:/opt/app
+    environment:
+      - DB_NAME=api
+      - DB_USER=dev
+      - DB_PASS=pass
+      - DB_PORT=3303
+      - DB_HOST=db
+      - DB_DIALECT=mysql
+      - MyAPI_URL=https://reqres.in
+      - MyAPI_CLIENT_ID=4h354534y5345345
+      - MyAPI_CLIENT_SECRET=wertwert24t432btrg234tr34234r23g4t2hb34
+    depends_on:
+      - db
+    networks:
+      - app-net

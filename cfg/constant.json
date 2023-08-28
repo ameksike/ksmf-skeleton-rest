@@ -1,0 +1,19 @@
+{
+    "action": {
+        "none": 0,
+        "read": 1,
+        "update": 2,
+        "create": 3,
+        "write": 4,
+        "all": 5
+    },
+    "quantity": {
+        "all": "all",
+        "one": "one"
+    },
+    "status": {
+        "disabled": 0,
+        "activated": 1,
+        "blocked": 3
+    }
+}

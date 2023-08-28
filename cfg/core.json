@@ -1,22 +1,33 @@
 {
-    "development": {
+    "default": {
+        "envkey": "",
         "port": 3005,
         "host": "localhost",
         "protocol": "http",
-        "log": 2,
+        "import": {
+            "db": "cfg/db.js",
+            "log": "cfg/log.json",
+            "constant": "cfg/constant.json"
+        },
         "doc": {
             "url": "/api/v1/doc",
             "src": "cfg/doc.json"
         },
+        "cors": [
+            "https://app.forestadmin.com"
+        ],
         "module": {
             "load": [
                 "user",
                 "comment",
-                "app"
+                "app",
+                "forest"
             ]
         },
         "event": {
             "onInitConfig": [
+                "logger.wrapper",
+                "error.wrapper",
                 "dao.wrapper",
                 "doc.wrapper"
             ],
@@ -25,23 +36,29 @@
             ],
             "onLoadModule": [
                 "dao.wrapper",
-                "doc.wrapper"                
+                "doc.wrapper"
             ],
             "onLoadedModules": [
                 "dao.wrapper"
             ],
+            "onInitApp": [
+                "logger.wrapper"
+            ],
             "onInitCompleted": [
                 "doc.wrapper"
+            ],
+            "onStart": [
+                "monitor.wrapper"
+            ],
+            "onError": [
+                "monitor.wrapper"
             ]
         },
         "helper": {
-            "sequelize": {
+            "utl": {
                 "name": "ksmf",
                 "type": "lib",
-                "namespace": "dao.Sequelize",
-                "dependency": {
-                    "helper": "helper"
-                }
+                "namespace": "app.Utl"
             },
             "dao": {
                 "name": "ksmf",
@@ -72,94 +89,47 @@
                     "helper": "helper"
                 }
             },
-            "logger": {
+            "error.wrapper": {
                 "name": "ksmf",
                 "type": "lib",
-                "namespace": "app.Logger"
+                "namespace": "monitor.Error",
+                "dependency": {
+                    "helper": "helper"
+                }
+            },
+            "logger.wrapper": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "monitor.LoggerWrapper",
+                "dependency": {
+                    "helper": "helper",
+                    "manager": {
+                        "name": "ksmf",
+                        "type": "lib",
+                        "namespace": "monitor.LoggerManager",
+                        "dependency": {
+                            "driver": {
+                                "name": "ksmf",
+                                "type": "lib",
+                                "namespace": "monitor.LoggerSimple"
+                            }
+                        }
+                    }
+                }
+            },
+            "monitor.wrapper": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "monitor.Manager",
+                "dependency": {
+                    "helper": "helper"
+                }
             },
             "MyAPI": {
                 "path": "service",
                 "module": "app"
-            }
-        }
-    },
-    "test": {
-        "port": 3007,
-        "host": "localhost",
-        "protocol": "http",
-        "log": 0,
-        "doc": {
-            "url": "/api/v1/doc",
-            "src": "cfg/doc.json"
-        },
-        "module": {
-            "load": [
-                "user",
-                "comment",
-                "app"
-            ]
-        },
-        "event": {
-            "onInitConfig": [
-                "dao.wrapper"
-            ],
-            "onInitModules": [
-                "dao.wrapper"
-            ],
-            "onLoadModule": [
-                "dao.wrapper"
-            ],
-            "onLoadedModules": [
-                "dao.wrapper"
-            ],
-            "onInitCompleted": [
-                "doc.wrapper"
-            ]
-        },
-        "helper": {
-            "sequelize": {
-                "name": "ksmf",
-                "type": "lib",
-                "namespace": "dao.Sequelize",
-                "dependency": {
-                    "helper": "helper"
-                }
             },
-            "dao": {
-                "name": "ksmf",
-                "type": "lib",
-                "namespace": "dao.Sequelize",
-                "dependency": {
-                    "helper": "helper"
-                }
-            },
-            "dao.wrapper": {
-                "name": "ksmf",
-                "type": "lib",
-                "params": {
-                    "exclude": [
-                        "forest"
-                    ]
-                },
-                "namespace": "dao.Wrapper",
-                "dependency": {
-                    "helper": "helper"
-                }
-            },
-            "doc.wrapper": {
-                "name": "ksmf",
-                "type": "lib",
-                "namespace": "doc.Swagger",
-                "dependency": {
-                    "helper": "helper"
-                }
-            },
-            "logger": {
-                "name": "ksmf",
-                "type": "lib",
-                "namespace": "app.Logger"
-            },
-            "MyAPI": {
+            "SrvAPI": {
                 "path": "service",
                 "module": "app"
             }

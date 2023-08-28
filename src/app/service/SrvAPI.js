@@ -84,6 +84,10 @@ class SrvAPI {
             data
         });
     }
+
+    run(a, b, app) {
+        console.log(a, b);
+    }
 }
 
 module.exports = SrvAPI;

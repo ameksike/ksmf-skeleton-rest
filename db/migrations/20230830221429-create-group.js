@@ -1,39 +1,33 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('comments', {
+    await queryInterface.createTable('groups', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      comment: {
-        type: Sequelize.TEXT
+      name: {
+        type: Sequelize.STRING
       },
-      user_id: {
+      description: {
+        type: Sequelize.STRING
+      },
+      status: {
         type: Sequelize.INTEGER
-      },
-      flight_id: {
-        type: Sequelize.INTEGER
-      },
-      date: {
-        defaultValue: Sequelize.literal("NOW()"),
-        type: Sequelize.DATE
       },
       createdAt: {
-        defaultValue: Sequelize.fn('NOW'),
         allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        defaultValue: Sequelize.fn('NOW'),
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('comments');
+    await queryInterface.dropTable('groups');
   }
 };

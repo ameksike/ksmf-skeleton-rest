@@ -1,28 +1,24 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('comments', {
+    await queryInterface.createTable('customers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      comment: {
-        type: Sequelize.TEXT
-      },
-      user_id: {
+      user_Id: {
         type: Sequelize.INTEGER
       },
-      flight_id: {
+      service_id: {
         type: Sequelize.INTEGER
       },
-      date: {
-        defaultValue: Sequelize.literal("NOW()"),
-        type: Sequelize.DATE
+      status: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
-        defaultValue: Sequelize.fn('NOW'),
+        defaultValue: Sequelize.literal("NOW()"),
         allowNull: false,
         type: Sequelize.DATE
       },
@@ -34,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('comments');
+    await queryInterface.dropTable('customers');
   }
 };

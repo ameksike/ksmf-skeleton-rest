@@ -88,9 +88,18 @@ The **page** and **size** options allow you to work with limiting and pagination
 - npx sequelize-cli model:generate --name user --attributes name:string,age:integer,job:string,note:text
 - npx sequelize-cli model:generate --name comment --attributes comment:text,userId:integer,flightId:integer,tagId:integer
 - npx sequelize-cli model:generate --name tag --attributes name:string
-- npx sequelize-cli model:generate --name tagComment --attributes commentId:integer,tagId:integer
-
-- npm run db:model:generate service --attributes name:string
+- npx sequelize-cli model:generate --name tag_comment --attributes comment_id:integer,tag_id:integer
+- npx sequelize-cli model:generate --name supplier --attributes user_id:integer,service_id:integer,status:integer 
+- npx sequelize-cli model:generate --name customer --attributes user_id:integer,service_id:integer,status:integer 
+- npx sequelize-cli model:generate --name affiliate --attributes code:string,user_id:integer,owner_id:integer,campaign_id:integer,status:integer  
+- npx sequelize-cli model:generate --name campaign --attributes name:string,description:string,type:integer,value:integer,percent:integer,minimum:integer,maximum:integer,expiration:date,status:integer  
+- npx sequelize-cli model:generate --name service --attributes name:string,description:string,image:string,owner_name:string,owner_id:integer,type:integer,category:integer,country:string,address:string,grupo_id:integer,stock:integer,store:integer,status:integer 
+- npx sequelize-cli model:generate --name bill --attributes service_id:integer,currency:string,change:integer,amount:integer,type:integer,cost:integer,tax:integer,tax_percent:integer,transport:integer,discount:integer,discount_percent:integer,decrease:integer,price:integer,benefit:integer,benefit_percent:integer,profit:integer,profit_percent:integer,status:integer 
+- npx sequelize-cli model:generate --name file --attributes name:string,content:string,url:string,status:integer  
+- npx sequelize-cli model:generate --name group --attributes name:string,description:string,status:integer   
+- npx sequelize-cli model:generate --name group_user --attributes grupo_id:integer,user_id:integer,status:integer  
+- npx sequelize-cli model:generate --name group_service --attributes grupo_id:integer,service_id:integer,status:integer  
+ 
 - npx sequelize-cli db:migrate
 
 ## Create Data Base Seeders

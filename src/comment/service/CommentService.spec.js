@@ -6,7 +6,7 @@ const KsMf = require('ksmf');
 //... load system
 const app = new KsMf.app.WEB(__dirname + "/../../../").init();
 const dao = app.helper.get('dao');
-const userModel = dao.models['user'];
+const userModel = dao.models['User'];
 //... load target
 const commentService = app.helper.get({
    name: 'CommentService',

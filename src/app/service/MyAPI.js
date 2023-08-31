@@ -28,8 +28,8 @@ class MyAPI extends SrvAPI {
             "data": [{
                 "id": 7,
                 "email": "michael.lawson@reqres.in",
-                "first_name": "Michael",
-                "last_name": "Lawson",
+                "firstName": "Michael",
+                "lastName": "Lawson",
                 "avatar": "https://reqres.in/img/faces/7-image.jpg"
             }]
      */

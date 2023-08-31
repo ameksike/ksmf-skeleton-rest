@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('comments', [
+    await queryInterface.bulkInsert('Comments', [
       { comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flightId: 666, userId: 1, createdAt: '2022-01-25', updatedAt: '2022-01-25' },
       { comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flightId: 666, userId: 1, createdAt: '2022-01-25', updatedAt: '2022-01-25' },
       { comment: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flightId: 333, userId: 1, createdAt: '2022-01-25', updatedAt: '2022-01-15' },
@@ -14,6 +14,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('comments', null, {});
+    await queryInterface.bulkDelete('Comments', null, {});
   }
 };

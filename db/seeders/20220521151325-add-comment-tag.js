@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('tagComments', [
+    await queryInterface.bulkInsert('TagComments', [
       { commentId: 1, tagId: 1, createdAt: '2022-01-25', updatedAt: '2022-01-25' },
       { commentId: 1, tagId: 2, createdAt: '2022-01-25', updatedAt: '2022-01-25' },
       { commentId: 1, tagId: 3, createdAt: '2022-01-25', updatedAt: '2022-01-25' },
@@ -13,6 +13,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('tagComments', null, {});
+    await queryInterface.bulkDelete('TagComments', null, {});
   }
 };

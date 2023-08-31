@@ -11,17 +11,71 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.comment);
+      User.hasMany(models.Comment);
     }
   }
   User.init({
-    name: DataTypes.STRING,
-    age: DataTypes.INTEGER,
-    job: DataTypes.STRING,
-    note: DataTypes.TEXT
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
+    },
+    documentId: {
+      type: DataTypes.STRING
+    },
+    documentType: {
+      type: DataTypes.STRING
+    },
+    documentCountry: {
+      type: DataTypes.STRING
+    },
+    documentExpedition: {
+      type: DataTypes.DATE
+    },
+    documentExpiration: {
+      type: DataTypes.DATE
+    },
+    age: {
+      type: DataTypes.INTEGER
+    },
+    sex: {
+      type: DataTypes.STRING(1)
+    },
+    phone: {
+      type: DataTypes.STRING
+    },
+    email: {
+      type: DataTypes.STRING
+    },
+    country: {
+      type: DataTypes.STRING
+    },
+    nationality: {
+      type: DataTypes.STRING
+    },
+    city: {
+      type: DataTypes.STRING
+    },
+    address: {
+      type: DataTypes.STRING
+    },
+    postal: {
+      type: DataTypes.STRING
+    },
+    status: {
+      type: DataTypes.INTEGER
+    },
+    note: {
+      type: DataTypes.TEXT
+    },
+    job: {
+      defaultValue: 'None',
+      type: DataTypes.STRING
+    },
   }, {
     sequelize,
-    modelName: 'user',
+    modelName: 'User',
   });
   return User;
 };

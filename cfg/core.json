@@ -20,8 +20,7 @@
             "load": [
                 "user",
                 "comment",
-                "app",
-                "forest"
+                "app"
             ]
         },
         "event": {
@@ -39,7 +38,8 @@
                 "doc.wrapper"
             ],
             "onLoadedModules": [
-                "dao.wrapper"
+                "dao.wrapper",
+                "forest.wrapper"
             ],
             "onInitApp": [
                 "logger.wrapper"
@@ -77,6 +77,13 @@
                     ]
                 },
                 "namespace": "dao.Wrapper",
+                "dependency": {
+                    "helper": "helper"
+                }
+            },
+            "forest.wrapper": {
+                "name": "forest",
+                "type": "module",
                 "dependency": {
                     "helper": "helper"
                 }

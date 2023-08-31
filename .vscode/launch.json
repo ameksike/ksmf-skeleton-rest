@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/node_modules/ksmf/bin/cli.js",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
-            "args": ["run", "SrvAPI", "mito", "lete"]
+            "args": ["web"]
         },
         {
             "type": "node",

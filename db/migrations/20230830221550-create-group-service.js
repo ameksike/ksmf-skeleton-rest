@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      grupo_id: {
+      grupoId: {
         type: Sequelize.INTEGER
       },
-      service_id: {
+      serviceId: {
         type: Sequelize.INTEGER
       },
       status: {

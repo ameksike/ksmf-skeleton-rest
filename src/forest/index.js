@@ -12,7 +12,7 @@ class ForestModule extends KsMf.app.Module {
         super.init();
     }
 
-    async initApp() {
+    async onLoadedModules() {
         const app = this.helper.get('app');
         const dao = this.helper.get('dao');
         const web = app.web;
@@ -33,7 +33,8 @@ class ForestModule extends KsMf.app.Module {
             logger.info({
                 src: "Module:ForestAdmin:initApp",
                 data: {
-                    'URL': 'https://app.forestadmin.com/projects'
+                    'URL': 'https://app.forestadmin.com/projects',
+                    models: Object.keys(dao.models)
                 }
             });
         }

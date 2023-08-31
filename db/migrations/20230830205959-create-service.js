@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('services', {
+    await queryInterface.createTable('Services', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,10 +17,10 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
-      owner_name: {
+      ownerName: {
         type: Sequelize.STRING
       },
-      owner_id: {
+      ownerId: {
         type: Sequelize.INTEGER
       },
       type: {
@@ -35,7 +35,7 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      grupo_id: {
+      grupoId: {
         type: Sequelize.INTEGER
       },
       stock: {
@@ -58,6 +58,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('services');
+    await queryInterface.dropTable('Services');
   }
 };

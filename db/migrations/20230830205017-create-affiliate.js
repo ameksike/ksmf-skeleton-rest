@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('affiliates', {
+    await queryInterface.createTable('Affiliates', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,13 +11,13 @@ module.exports = {
       code: {
         type: Sequelize.STRING
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER
       },
-      owner_id: {
+      ownerId: {
         type: Sequelize.INTEGER
       },
-      campaign_id: {
+      campaignId: {
         type: Sequelize.INTEGER
       },
       status: {
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('affiliates');
+    await queryInterface.dropTable('Affiliates');
   }
 };

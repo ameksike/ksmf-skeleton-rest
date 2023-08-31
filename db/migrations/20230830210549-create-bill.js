@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('bills', {
+    await queryInterface.createTable('Bills', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      service_id: {
+      serviceId: {
         type: Sequelize.INTEGER
       },
       currency: {
@@ -29,7 +29,7 @@ module.exports = {
       tax: {
         type: Sequelize.INTEGER
       },
-      tax_percent: {
+      taxPercent: {
         type: Sequelize.INTEGER
       },
       transport: {
@@ -38,7 +38,7 @@ module.exports = {
       discount: {
         type: Sequelize.INTEGER
       },
-      discount_percent: {
+      discountPercent: {
         type: Sequelize.INTEGER
       },
       decrease: {
@@ -50,13 +50,13 @@ module.exports = {
       benefit: {
         type: Sequelize.INTEGER
       },
-      benefit_percent: {
+      benefitPercent: {
         type: Sequelize.INTEGER
       },
       profit: {
         type: Sequelize.INTEGER
       },
-      profit_percent: {
+      profitPercent: {
         type: Sequelize.INTEGER
       },
       status: {
@@ -73,6 +73,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('bills');
+    await queryInterface.dropTable('Bills');
   }
 };

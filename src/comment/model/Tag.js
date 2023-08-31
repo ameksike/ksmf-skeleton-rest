@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Tag.belongsToMany(models.comment, { through: models.tagComment });
-      Tag.hasMany(models.tagComment);
+      Tag.belongsToMany(models.Comment, { through: models.TagComment });
+      Tag.hasMany(models.TagComment);
     }
   }
   Tag.init({
     name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'tag',
+    modelName: 'Tag',
   });
   return Tag;
 };

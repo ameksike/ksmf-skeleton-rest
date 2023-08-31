@@ -3,7 +3,7 @@ const KsMf = require('ksmf');
 const app = new KsMf.app.WEB(__dirname + "/../../../").init();
 const web = app.web;
 const dao = app.helper.get('dao');
-const userModel = dao.models['user'];
+const userModel = dao.models['User'];
 //... define integration test handler
 const supertest = require('supertest');
 const req = supertest(web);

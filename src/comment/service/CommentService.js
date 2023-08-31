@@ -25,9 +25,9 @@ class CommentService extends CrudService {
      *              https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/
      */
     configure() {
-        const tagModel = this.dao.models['tag'];
-        const tagComentModel = this.dao.models['tagComment'];
-        const userModel = this.dao.models['user'];
+        const tagModel = this.dao.models['Tag'];
+        const tagComentModel = this.dao.models['TagComment'];
+        const userModel = this.dao.models['User'];
         const tagComentrelation = {
             model: tagComentModel,
             include: [{

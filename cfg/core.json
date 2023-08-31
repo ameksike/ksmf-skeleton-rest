@@ -132,6 +132,14 @@
                     "helper": "helper"
                 }
             },
+            "data.service": {
+                "name": "ksmf",
+                "type": "lib",
+                "namespace": "dao.DataService",
+                "dependency": {
+                    "helper": "helper"
+                }
+            },
             "MyAPI": {
                 "path": "service",
                 "module": "app"

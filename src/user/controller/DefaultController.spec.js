@@ -18,7 +18,7 @@ describe('INTEGRATION_TEST_User_Default_Controller', () => {
             jest.useFakeTimers();
             await dao.driver.sync({ force: true });
             //... prepare data 
-            const bulkres = await userModel.bulkCreate([
+            await userModel.bulkCreate([
                 {
                     id: 1,
                     name: 'Mis Doe',
@@ -37,7 +37,7 @@ describe('INTEGRATION_TEST_User_Default_Controller', () => {
                 }
             ]);
         } catch (error) {
-            console.log('[TEST_ERROR] ', error && error.message ? error.message : error);
+            console.log('[TEST_ERROR] ', error?.message || error);
         }
     });
 

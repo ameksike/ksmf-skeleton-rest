@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('group_services', {
+    await queryInterface.createTable('GroupServices', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      grupoId: {
+      groupId: {
         type: Sequelize.INTEGER
       },
       serviceId: {
@@ -28,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('group_services');
+    await queryInterface.dropTable('GroupServices');
   }
 };

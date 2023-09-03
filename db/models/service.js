@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Service.hasMany(models.Customer, { foreignKey: 'serviceId' });
+      Service.hasMany(models.Supplier, { foreignKey: 'serviceId' });
+      Service.hasMany(models.Bill, { foreignKey: 'serviceId' });
     }
   }
   Service.init({
@@ -23,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.INTEGER,
     country: DataTypes.STRING,
     address: DataTypes.STRING,
-    grupoId: DataTypes.INTEGER,
+    groupId: DataTypes.INTEGER,
     stock: DataTypes.INTEGER,
     store: DataTypes.INTEGER,
     status: DataTypes.INTEGER

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   GroupService.init({
-    grupoId: DataTypes.INTEGER,
+    groupId: DataTypes.INTEGER,
     serviceId: DataTypes.INTEGER,
     status: DataTypes.INTEGER
   }, {

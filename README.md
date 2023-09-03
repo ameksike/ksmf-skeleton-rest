@@ -97,8 +97,8 @@ The **page** and **size** options allow you to work with limiting and pagination
 - npx sequelize-cli model:generate --name bill --attributes serviceId:integer,currency:string,change:integer,amount:integer,type:integer,cost:integer,tax:integer,taxPercent:integer,transport:integer,discount:integer,discountPercent:integer,decrease:integer,price:integer,benefit:integer,benefitPercent:integer,profit:integer,profitPercent:integer,status:integer 
 - npx sequelize-cli model:generate --name file --attributes name:string,content:string,url:string,status:integer  
 - npx sequelize-cli model:generate --name group --attributes name:string,description:string,status:integer   
-- npx sequelize-cli model:generate --name group_user --attributes grupoId:integer,userId:integer,status:integer  
-- npx sequelize-cli model:generate --name group_service --attributes grupoId:integer,serviceId:integer,status:integer  
+- npx sequelize-cli model:generate --name group_user --attributes groupId:integer,userId:integer,status:integer  
+- npx sequelize-cli model:generate --name group_service --attributes groupId:integer,serviceId:integer,status:integer  
  
 - npx sequelize-cli db:migrate
 

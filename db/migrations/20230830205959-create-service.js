@@ -35,7 +35,7 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      grupoId: {
+      groupId: {
         type: Sequelize.INTEGER
       },
       stock: {

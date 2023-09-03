@@ -51,7 +51,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                 }
             ]);
         } catch (error) {
-            console.log('[TEST_ERROR] ', error && error.message ? error.message : error);
+            console.log('[TEST_ERROR] ', error?.message || error);
         }
     });
 
@@ -131,7 +131,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                 "comment": "Test 9 Comment",
                 "flightId": 666,
                 "userId": 1,
-                "tags": [1,2]
+                "tags": [1, 2]
             })
             .end((error, res) => {
                 if (error) {

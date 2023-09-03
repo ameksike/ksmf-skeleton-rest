@@ -14,7 +14,7 @@ class AppModule extends KsMf.app.Module {
         const app = this.helper.get('app');
         const web = app.web;
         function redirect(req, res) {
-            if (app.cfg && app.cfg.srv && app.cfg.srv.doc && app.cfg.srv.doc.url) {
+            if (app?.cfg?.srv?.doc?.url) {
                 res.writeHead(302, {
                     location: app.cfg.srv.doc.url,
                 });

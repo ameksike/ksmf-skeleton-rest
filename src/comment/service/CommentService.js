@@ -27,11 +27,13 @@ class CommentService extends ksmf.dao.DataService {
                 attributes: [],
                 required: false
             }
-        },this.dao.models.User];
+        },{
+            model: this.dao.models.User
+        }];
     }
 
     select(payload) {
-        payload.attributes = payload.attributes || ["comment", "date"];
+        payload.attributes = payload.attributes || ["id", "comment", "date"];
         return super.select(payload);
     }
 
@@ -48,16 +50,9 @@ class CommentService extends ksmf.dao.DataService {
 
     async save(payload) {
         const comment = await super.save(payload);
-        const tags = await this.setTags(comment, payload);
+        await this.setTags(comment, payload.data);
         return comment;
     }
-
-    async update(payload) {
-        const comment = await super.update(payload);
-        const tags = await this.setTags(comment, payload);
-        return comment;
-    }
-
 }
 
 module.exports = CommentService;

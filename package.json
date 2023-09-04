@@ -52,7 +52,7 @@
     "axios": "^0.26.1",
     "express-session": "^1.17.3",
     "express-validator": "^6.14.0",
-    "ksmf": "^1.2.21",
+    "ksmf": "^1.2.22",
     "mariadb": "^3.0.0",
     "mysql2": "^2.3.3",
     "pg": "^8.7.3",

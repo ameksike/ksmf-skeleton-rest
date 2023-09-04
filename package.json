@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node node_modules/ksmf/bin/cli.js",
     "dev": "nodemon node_modules/ksmf/bin/cli.js",
+    "build": "node -v",
     "test": "jest",
     "tool": "node node_modules/ksmf/bin/cli.js",
     "db:model:auto": "node node_modules/ksmf/bin/cli.js db",

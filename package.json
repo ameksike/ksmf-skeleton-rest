@@ -1,6 +1,6 @@
 {
   "name": "ksmf-skeleton-rest",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "This is a template to create REST API services in a simple and easy way",
   "main": "./bin/server.js",
   "scripts": {

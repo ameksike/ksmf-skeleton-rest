@@ -13,9 +13,12 @@ This is a template to create REST API services in a simple and easy way. This pr
 - npx sequelize-cli db:seed:all
 - npm start
 
-## Docker
+## Docker DB
     $ docker-compose up -d db
     $ docker-compose stop db
+    $ socker logs ksmf-skeleton-rest-db-1 -f
+    
+## Docker API
     $ docker-compose -f docker-compose.yml up -d api
     $ docker-compose -f docker-compose.yml stop api
     $ docker logs oauth-server-api-1 -f

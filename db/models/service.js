@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Service.hasMany(models.Customer, { foreignKey: 'serviceId' });
       Service.hasMany(models.Supplier, { foreignKey: 'serviceId' });
       Service.hasMany(models.Bill, { foreignKey: 'serviceId' });
+      Service.belongsToMany(models.Group, { through: models.GroupService, foreignKey: 'serviceId' });
     }
   }
   Service.init({

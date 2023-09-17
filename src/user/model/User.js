@@ -12,11 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasOne(models.Affiliate, { foreignKey: 'ownerId' });
-      /*User.hasMany(models.Affiliate, { foreignKey: 'userId', as: "Affiliates" });
-*/
       User.hasMany(models.Customer, { foreignKey: 'userId' });
       User.hasMany(models.Supplier, { foreignKey: 'userId' });
-
       User.belongsToMany(models.Group, { through: models.GroupUsers, foreignKey: 'userId' });
     }
   }

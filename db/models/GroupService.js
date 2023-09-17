@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      GroupService.hasMany(models.Service, { foreignKey: 'id' });
+      GroupService.hasMany(models.Group, { foreignKey: 'id' });
     }
   }
   GroupService.init({

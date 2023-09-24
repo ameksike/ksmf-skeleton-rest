@@ -7,7 +7,7 @@
  * @version    	1.0
  * */
 const KsMf = require('ksmf');
-class DefaultController extends KsMf.dao.DataController {
+class UserController extends KsMf.dao.DataController {
 
     constructor() {
         super(...arguments);
@@ -24,4 +24,4 @@ class DefaultController extends KsMf.dao.DataController {
     }
 }
 
-module.exports = DefaultController;
+module.exports = UserController;

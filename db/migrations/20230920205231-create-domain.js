@@ -26,13 +26,22 @@ module.exports = {
       idpUrlEntry: {
         type: Sequelize.TEXT
       },
-      idpUrlLogin: {
+      idpUrlEntryBack: {
         type: Sequelize.TEXT
       },
-      idpUrlLogout: {
+      idpUrlToken: {
+        type: Sequelize.TEXT
+      },
+      idpUrlRevoke: {
+        type: Sequelize.TEXT
+      },
+      idpUrlRevokeBack: {
         type: Sequelize.TEXT
       },
       idpUrlFailure: {
+        type: Sequelize.TEXT
+      },
+      idpUrlProfile: {
         type: Sequelize.TEXT
       },
       idpMetadata: {
@@ -45,7 +54,13 @@ module.exports = {
         type: Sequelize.TEXT
       },
       idpType: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      idpId: {
+        type: Sequelize.TEXT
+      },
+      idpSecret: {
+        type: Sequelize.TEXT
       },
       idpCert: {
         type: Sequelize.TEXT
@@ -65,10 +80,10 @@ module.exports = {
       asUrlRevoke: {
         type: Sequelize.TEXT
       },
-      asUrlMetadata: {
+      asUrlProfile: {
         type: Sequelize.TEXT
       },
-      asUrlProfile: {
+      asMetadata: {
         type: Sequelize.TEXT
       },
       asCert: {

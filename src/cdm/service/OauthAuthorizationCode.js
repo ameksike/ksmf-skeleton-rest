@@ -25,11 +25,7 @@ class OauthAuthorizationCode extends ksdp.integration.Dip {
             client_id: payload?.domain?.idpId,
             redirect_uri: payload?.domain?.idpUrlEntryBack,
             scope: payload?.scope || "",
-            state: this.encode({
-                flow: req.flow,
-                domain: payload?.domain,
-                credential: payload?.credential
-            }),
+            state: payload?.token || "",
             response_type: "code"
         };
         const url = ksmf.app.Url.self().add(uri, params);
@@ -55,8 +51,8 @@ class OauthAuthorizationCode extends ksdp.integration.Dip {
             };
             const response = await axios.post(domain?.idpUrlToken, null, { params });
             const profile = await this.getProfile({ domain, code: response?.data?.access_token, flow });
-            const user = await this.register({ profile, state, flow });
-            const token = await this.encode({ domain, credential, user, flow });
+            const user = await this.srvAccount?.register({ profile, state, flow });
+            //const token = await this.encode({ domain, credential, user, flow });
             return res.redirect(credential?.redirectUri);
         } catch (error) {
             this.logger?.error({
@@ -66,21 +62,6 @@ class OauthAuthorizationCode extends ksdp.integration.Dip {
                 error
             });
         }
-    }
-
-    encode(payload) {
-        const { domain, credential, user, flow } = payload || {};
-        return kscryp.encode({
-            flow: flow || Date.now(),
-            userId: user?.id,
-            domain: domain?.id,
-            credential: credential?.id
-        }, "jwt");
-    }
-
-    decode(payload) {
-        const { code } = payload || {};
-        return kscryp.decode(code, "jwt");
     }
 
     async getProfile(payload) {
@@ -100,11 +81,6 @@ class OauthAuthorizationCode extends ksdp.integration.Dip {
                 error
             });
         }
-    }
-
-    register(payload) {
-        const { domain, credential, profile } = payload || {};
-        
     }
 
     revoke(req, res, payload) {

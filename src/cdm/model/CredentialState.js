@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CredentialState.init({
-    flow: DataTypes.INTEGER,
+    flow: DataTypes.BIGINT,
     credentialId: DataTypes.INTEGER,
     domainId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,

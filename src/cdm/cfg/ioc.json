@@ -29,6 +29,19 @@
             "logger": "logger"
         }
     },
+    "cdm.service.Account" : {
+        "name": "AccountService",
+        "path": "service",
+        "module": "cdm",
+        "dependency": {
+            "dao": "dao",
+            "helper": "helper",
+            "logger": "logger",
+            "srvDomain": "cdm.service.Domain",
+            "srvCredential": "cdm.service.Credential",
+            "srvCredentialState": "cdm.service.CredentialState"
+        }
+    },
     "cdm.service.OauthAuthorizationCode" : {
         "name": "OauthAuthorizationCode",
         "path": "service",

@@ -30,12 +30,12 @@ class CdmModule extends KsMf.app.Module {
             action: 'authorize',
             method: 'get'
         }, {
-            route: prefix + "/oauth/authorize/back",
+            route: prefix + "/oauth/authorize/idp/back",
             controller: 'OauthController',
             action: 'authorizeBack',
             method: 'get'
         }, {
-            route: prefix + "/oauth/authorize/back",
+            route: prefix + "/oauth/authorize/idp/back",
             controller: 'OauthController',
             action: 'authorizeBack',
             method: 'post'
@@ -45,12 +45,12 @@ class CdmModule extends KsMf.app.Module {
             action: 'revoke',
             method: 'get'
         }, {
-            route: prefix + "/oauth/revoke/back",
+            route: prefix + "/oauth/revoke/idp/back",
             controller: 'OauthController',
             action: 'revokeBack',
             method: 'get'
         }, {
-            route: prefix + "/oauth/revoke/back",
+            route: prefix + "/oauth/revoke/idp/back",
             controller: 'OauthController',
             action: 'revokeBack',
             method: 'post'

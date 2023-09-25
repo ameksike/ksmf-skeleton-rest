@@ -24,7 +24,7 @@ class OauthAuthorizationCode extends ksdp.integration.Dip {
         const params = {
             client_id: payload?.domain?.idpId,
             redirect_uri: payload?.domain?.idpUrlEntryBack,
-            scope: payload?.domain?.idpUrlEntry,
+            scope: payload?.scope || "",
             state: this.encode({
                 flow: req.flow,
                 domain: payload?.domain,

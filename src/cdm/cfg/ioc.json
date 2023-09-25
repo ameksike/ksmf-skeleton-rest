@@ -9,6 +9,16 @@
             "logger": "logger"
         }
     },
+    "cdm.service.CredentialState" : {
+        "name": "CredentialStateService",
+        "path": "service",
+        "module": "cdm",
+        "dependency": {
+            "dao": "dao",
+            "helper": "helper",
+            "logger": "logger"
+        }
+    },
     "cdm.service.Domain" : {
         "name": "DomainService",
         "path": "service",
@@ -21,6 +31,16 @@
     },
     "cdm.service.OauthAuthorizationCode" : {
         "name": "OauthAuthorizationCode",
+        "path": "service",
+        "module": "cdm",
+        "dependency": {
+            "dao": "dao",
+            "helper": "helper",
+            "logger": "logger"
+        }
+    },
+    "cdm.service.Google" : {
+        "name": "Google",
         "path": "service",
         "module": "cdm",
         "dependency": {

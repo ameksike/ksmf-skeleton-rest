@@ -23,7 +23,7 @@ class OauthController {
     }
 
     async authorize(req, res) {
-        const params = ksmf.app.Utl.self().mixReq(req);
+        const params = this.getAuthData(req);
         const domainId = (params.state || "").trim().split(" ")[0];
         const flow = req.flow;
 
@@ -53,7 +53,17 @@ class OauthController {
         handler?.inject instanceof Function && handler.inject({ srvAccount: this.srvAccount });
 
         // credential verification
-        const credential = null;
+        this.srvCredential.generate(opt, { user_agent: req.headers['user-agent'], strict: true });
+        const credential = await this.srvCredential.save({
+            data: params,
+            where: { clientId: params.clientId },
+            mode: this.srvCredential?.constant?.action?.write
+        });
+        if (!credential) {
+            return res.status(400).json({
+                error: "Bad credential"
+            });
+        }
 
         // credential state tracking
         const credentialState = await this.srvCredentialState.save({
@@ -133,6 +143,34 @@ class OauthController {
     decode(payload) {
         const { code } = payload || {};
         return kscryp.decode(code, "jwt");
+    }
+
+    /**
+     * @description extract all authentication parameters from request
+     * @param {Object} req 
+     * @param {Object} res 
+     * @returns {clientId:String, clientSecret:String, username:String, password:String, codeChallenge:String, codeChallengeMethod:String, redirectUri:String, refreshToken:String, grantType:String, scope:String, state:String, code:String, userAgent}
+     */
+    getAuthData(req) {
+        const payload = ksmf.app.Utl.self().mixReq(req);
+        const token = req?.headers?.authorization;
+        const credp = token ? kscryp.decode(token, 'basic') : {};
+        const res = {};
+        (payload?.client_id || credp?.key) && (res.clientId = payload?.client_id || credp?.key);
+        (payload?.client_secret || credp?.code) && (res.clientSecret = payload?.client_secret || credp?.code);
+        (payload?.username) && (res.username = payload.username);
+        (payload?.password) && (res.password = payload.password);
+        (payload?.code_challenge) && (res.codeChallenge = payload.code_challenge);
+        (payload?.code_challenge_method) && (res.codeChallengeMethod = payload.code_challenge_method);
+        (payload?.redirect_uri) && (res.redirectUri = payload.redirect_uri);
+        (payload?.refresh_token) && (res.refreshToken = payload.refresh_token);
+        (payload?.grant_type) && (res.grantType = payload.grant_type || "code");
+        (payload?.scope) && (res.scope = payload.scope);
+        (payload?.state) && (res.state = payload.state);
+        (payload?.code) && (res.code = payload.code);
+        (payload?.headers['user-agent']) && (res.userAgent = payload.headers['user-agent']);
+        (payload?.affiliate) && (res.affiliate = payload.affiliate);
+        return res;
     }
 }
 

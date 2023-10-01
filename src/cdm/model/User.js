@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Affiliate, { foreignKey: 'ownerId' });
       User.hasMany(models.Customer, { foreignKey: 'userId' });
       User.hasMany(models.Supplier, { foreignKey: 'userId' });
-      User.hasMany(models.CredentialState);
+      User.hasMany(models.CredentialState, { foreignKey: 'userId' });
       User.belongsToMany(models.Group, { through: models.GroupUsers, foreignKey: 'userId' });
     }
   }

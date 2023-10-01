@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Domain.hasMany(models.CredentialState);
+      Domain.hasMany(models.CredentialState, { foreignKey: 'domainId' });
     }
   }
   Domain.init({

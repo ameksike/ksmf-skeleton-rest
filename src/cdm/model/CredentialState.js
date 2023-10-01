@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      CredentialState.hasOne(models.Domain);
-      CredentialState.hasOne(models.Credential);
-      CredentialState.hasOne(models.User);
+      CredentialState.belongsTo(models.Domain, { foreignKey: 'domainId' });
+      CredentialState.belongsTo(models.Credential, { foreignKey: 'credentialId' });
+      CredentialState.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
   CredentialState.init({

@@ -29,6 +29,9 @@ module.exports = {
       status: {
         type: Sequelize.INTEGER
       },
+      redirectUri: {
+        type: Sequelize.TEXT
+      },
       metadata: {
         type: Sequelize.TEXT
       },

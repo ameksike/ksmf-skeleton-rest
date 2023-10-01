@@ -24,7 +24,7 @@ class OauthController {
 
     async authorize(req, res) {
         const params = this.getAuthData(req);
-        const domainId = (params.state || "").trim().split(" ")[0];
+        const domainId = params.domain || (params.state || "").trim().split(" ")[0];
         const flow = req.flow;
 
         // domain verification
@@ -34,7 +34,6 @@ class OauthController {
             },
             limit: 1
         });
-
         if (!domain) {
             return res.status(400).json({
                 error: "Bad request"
@@ -43,21 +42,19 @@ class OauthController {
 
         // Oauth handler verification
         const handler = this.getHandler({ domain, flow });
-
         if (!handler?.authorize) {
             return res.status(400).json({
                 error: "Bad domain"
             });
         }
-
         handler?.inject instanceof Function && handler.inject({ srvAccount: this.srvAccount });
 
         // credential verification
-        this.srvCredential.generate(opt, { user_agent: req.headers['user-agent'], strict: true });
+        this.srvCredential.generate(params, { user_agent: req.headers['user-agent'], strict: true });
         const credential = await this.srvCredential.save({
             data: params,
             where: { clientId: params.clientId },
-            mode: this.srvCredential?.constant?.action?.write
+            mode: domain.asUserAction
         });
         if (!credential) {
             return res.status(400).json({
@@ -71,7 +68,10 @@ class OauthController {
                 flow: parseInt(flow),
                 domainId: domain.id,
                 credentialId: credential?.id || null,
-                status: this.srvCredentialState.constant.status.activated,
+                status: 1,
+                state: params.state,
+                scope: params.scope,
+                redirectUri: params.redirectUri,
                 note: "STEP 1: init"
             },
             where: {
@@ -80,24 +80,47 @@ class OauthController {
             },
             mode: this.srvCredentialState.constant.action.create
         });
-        const token = this.encode({ flow, domain, credential });
+        const token = this.encode({ flow, domain, credential, affiliate });
 
         // proceed with the authentication
         return handler?.authorize(req, res, { domain, credential, token, flow });
     }
 
-    authorizeBack(req, res) {
-        const params = ksmf.app.Utl.self().mixReq(req);
-        const { state, code, scope } = params;
+    async authorizeBack(req, res) {
+        let params = ksmf.app.Utl.self().mixReq(req);
+        let { state, code, scope, flow } = params;
+        let payload = this.decode(state);
+        let flowInit = flow;
+        flow = payload.flow || flow;
 
-
-        res.json({
-            action: "authorizeBack",
-            method: req.method,
-            query: req.query,
-            body: req.body
+        const credentialState = await this.srvCredentialState.select({
+            where: { flow },
+            limit: 1
         });
 
+        this.logger?.info({
+            flow,
+            src: "Controller:OAuth:Authorize:Back",
+            flow_init: flowInit,
+            data: params
+        });
+
+        // domain verification
+        if (!credentialState?.domain) {
+            return res.status(400).json({
+                error: "Bad request"
+            });
+        }
+        // credential verification
+        if (!credentialState?.credential) {
+            return res.status(400).json({
+                error: "Bad request"
+            });
+        }
+
+        const handler = this.getHandler({ domain, flow });
+
+        return handler.authorizeBack(req, res, { domain, credential, flow, code, scope });
     }
 
     revoke(req, res) {
@@ -131,12 +154,13 @@ class OauthController {
     }
 
     encode(payload) {
-        const { domain, credential, user, flow } = payload || {};
+        const { domain, credential, user, affiliate, flow } = payload || {};
         return kscryp.encode({
             flow: flow || Date.now(),
             userId: user?.id,
-            domain: domain?.id,
-            credential: credential?.id
+            domainId: domain?.id,
+            credentialId: credential?.id,
+            affiliateId: affiliate?.id || affiliate
         }, "jwt");
     }
 
@@ -170,7 +194,58 @@ class OauthController {
         (payload?.code) && (res.code = payload.code);
         (payload?.headers['user-agent']) && (res.userAgent = payload.headers['user-agent']);
         (payload?.affiliate) && (res.affiliate = payload.affiliate);
+        (payload?.domain) && (res.domain = payload.domain);
         return res;
+    }
+
+    /**
+     * @description safe search for payload
+     * @param {Object} filter 
+     * @param {Object} options 
+     * @returns {Object} {user:Object, credential:Object, domain:Object, flow:String}
+     */
+    async search(filter, options) {
+        const { mode = this.srvUser?.constant?.quantity?.one, flow } = options || {};
+        try {
+            const [user, credential, domain] = await Promise.all([
+                filter.userId ? this.srvUser.select({ query: filter.userId, mode }, { flow }) : Promise.resolve(null),
+                filter?.credentialId ? this.srvCredential.select({
+                    query: filter.credentialId,
+                    include: {
+                        model: this.srvCredential?.dao?.models?.credentialState,
+                        as: 'states',
+                        where: filter,
+                        required: false
+                    },
+                    mode
+                }, { flow }) : Promise.resolve(null),
+                filter?.domainId ? this.srvDomain.select({
+                    query: filter.domainId, mode
+                }, { flow }) : Promise.resolve(null),
+            ]);
+            this.logger?.info({
+                flow: options?.flow,
+                src: "service:Authorization:search",
+                data: {
+                    result: { userId: user?.userId, credentialId: credential?.id, domainId: domain?.id },
+                    filter,
+                    options
+                }
+            });
+            return { user, credential, domain, flow };
+        }
+        catch (error) {
+            this.logger?.error && logger.error({
+                flow: options?.flow,
+                src: "service:Authorization:search",
+                message: error?.message || error,
+                data: {
+                    filter,
+                    options
+                }
+            });
+            return null;
+        }
     }
 }
 

@@ -14,6 +14,29 @@ class CredentialStateService extends ksmf.dao.DataService {
         super(config);
         this.modelName = 'CredentialState';
     }
+
+    /**
+     * @description format the include clause
+     * @override
+     * @param {Object|String|Number} include 
+     * @param {Object|String|Number} where 
+     * @returns {Object}
+     */
+    getInclude({ include, filter }) {
+        if (!include && include !== undefined) {
+            return null;
+        }
+        return [{
+            required: false,
+            model: this.dao.models.Domain
+        }, {
+            required: false,
+            model: this.dao.models.Credential
+        }, {
+            required: false,
+            model: this.dao.models.User
+        }];
+    }
 }
 
 module.exports = CredentialStateService;

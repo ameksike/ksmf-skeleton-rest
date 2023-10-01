@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const KsCryp = require('kscryp');
+
 module.exports = (sequelize, DataTypes) => {
   class Domain extends Model {
     /**
@@ -11,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Domain.hasMany(models.CredentialState);
     }
   }
   Domain.init({
@@ -26,8 +29,69 @@ module.exports = (sequelize, DataTypes) => {
     idpUrlFailure: DataTypes.TEXT,
     idpUrlProfile: DataTypes.TEXT,
     idpMetadata: DataTypes.TEXT,
-    idpMapRole: DataTypes.TEXT,
-    idpMapAttr: DataTypes.TEXT,
+    idpMapAttr: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      get() {
+        const rawVa = this.getDataValue('idpMapAttr');
+        if (!rawVa) {
+          return rawVa;
+        }
+        const value = KsCryp.decode(rawVa, "json", { defaultValue: null, strict: true, clean: true });
+        if (!value) {
+          logger.error({
+            src: "models:db:domain:idpMapAttr:get",
+            message: "Invalid JSON format",
+            data: rawVa
+          });
+        }
+        return value;
+      },
+      set(value = {}) {
+        const rawVa = KsCryp.encode(value, "json", { clean: true });
+        if (!rawVa) {
+          logger.error({
+            src: "models:db:domain:idpMapAttr:set",
+            message: "Invalid JSON format",
+            data: value
+          });
+          return null;
+        }
+        this.setDataValue('idpMapAttr', rawVa);
+      }
+    },
+    idpMapRole: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      get() {
+        const rawVa = this.getDataValue('idpMapRole');
+        if (!rawVa) {
+          return rawVa;
+        }
+        const value = KsCryp.decode(rawVa, "json", { defaultValue: null, strict: true, clean: true });
+        if (!value) {
+          logger.error({
+            src: "models:db:domain:idpMapRole:get",
+            message: "Invalid JSON format",
+            data: rawVa
+          });
+        }
+        return value;
+      },
+      set(value = {}) {
+        const rawVa = KsCryp.encode(value, "json", { clean: true });
+        if (!rawVa) {
+          logger.error({
+            src: "models:db:domain:idpMapRole:set",
+            message: "Invalid JSON format",
+            data: value
+          });
+          return null;
+        }
+        this.setDataValue('idpMapRole', rawVa);
+      }
+    },
+
     idpCert: DataTypes.TEXT,
     idpId: DataTypes.TEXT,
     idpSecret: DataTypes.TEXT,
@@ -39,7 +103,37 @@ module.exports = (sequelize, DataTypes) => {
     asUrlToken: DataTypes.TEXT,
     asUrlRevoke: DataTypes.TEXT,
     asUrlProfile: DataTypes.TEXT,
-    asMetadata: DataTypes.TEXT,
+    asMetadata: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      get() {
+        const rawVa = this.getDataValue('asMetadata');
+        if (!rawVa) {
+          return rawVa;
+        }
+        const value = KsCryp.decode(rawVa, "json", { defaultValue: null, strict: true, clean: true });
+        if (!value) {
+          logger.error({
+            src: "models:db:domain:asMetadata:get",
+            message: "Invalid JSON format",
+            data: rawVa
+          });
+        }
+        return value;
+      },
+      set(value = {}) {
+        const rawVa = KsCryp.encode(value, "json", { clean: true });
+        if (!rawVa) {
+          logger.error({
+            src: "models:db:domain:asMetadata:set",
+            message: "Invalid JSON format",
+            data: value
+          });
+          return null;
+        }
+        this.setDataValue('asMetadata', rawVa);
+      }
+    },
     asCert: DataTypes.TEXT,
     asKey: DataTypes.TEXT,
     asUserAction: DataTypes.INTEGER,

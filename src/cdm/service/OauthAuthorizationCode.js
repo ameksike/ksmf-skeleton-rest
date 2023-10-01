@@ -52,7 +52,7 @@ class OauthAuthorizationCode extends ksdp.integration.Dip {
             const response = await axios.post(domain?.idpUrlToken, null, { params });
             const profile = await this.getProfile({ domain, code: response?.data?.access_token, flow });
             const user = await this.srvAccount?.register({ profile, state, flow });
-            //const token = await this.encode({ domain, credential, user, flow });
+            // const token = await this.encode({ domain, credential, user, flow });
             return res.redirect(credential?.redirectUri);
         } catch (error) {
             this.logger?.error({

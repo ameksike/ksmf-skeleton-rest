@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      CredentialState.hasOne(models.Domain);
+      CredentialState.hasOne(models.Credential);
+      CredentialState.hasOne(models.User);
     }
   }
   CredentialState.init({
@@ -21,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     scope: DataTypes.TEXT,
     state: DataTypes.TEXT,
     status: DataTypes.INTEGER,
+    redirectUri: DataTypes.TEXT,
     metadata: DataTypes.TEXT,
     note: DataTypes.TEXT,
     secret: DataTypes.TEXT

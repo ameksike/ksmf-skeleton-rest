@@ -26,6 +26,7 @@ class OauthController {
         const params = this.getAuthData(req);
         const domainId = parseInt(params.domain || (params.state || "").trim().split(" ")[0]);
         const flow = req.flow;
+        const affiliate = params.affiliate;
 
         // domain verification
         const domain = await this.srvDomain.select({

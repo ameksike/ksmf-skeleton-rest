@@ -24,7 +24,7 @@ class OauthController {
 
     async authorize(req, res) {
         const params = this.getAuthData(req);
-        const domainId = params.domain || (params.state || "").trim().split(" ")[0];
+        const domainId = parseInt(params.domain || (params.state || "").trim().split(" ")[0]);
         const flow = req.flow;
 
         // domain verification
@@ -192,7 +192,7 @@ class OauthController {
         (payload?.scope) && (res.scope = payload.scope);
         (payload?.state) && (res.state = payload.state);
         (payload?.code) && (res.code = payload.code);
-        (payload?.headers['user-agent']) && (res.userAgent = payload.headers['user-agent']);
+        (req?.headers['user-agent']) && (res.userAgent = req.headers['user-agent']);
         (payload?.affiliate) && (res.affiliate = payload.affiliate);
         (payload?.domain) && (res.domain = payload.domain);
         return res;

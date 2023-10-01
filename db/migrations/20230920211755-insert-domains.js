@@ -25,10 +25,11 @@ const domains = [
       "idm": "locale"
     },
     asType: "OauthAuthorizationCode",
-    asUrlEntry: "https://www.facebook.com/v12.0/dialog/oauth",
-    asUrlToken: "https://graph.facebook.com/v12.0/oauth/access_token",
-    asUrlRevoke: "https://graph.facebook.com/v12.0/{{clientId}}/permissions",
-    asUrlProfile: "http://localhost:3005/api/v1/cdm/oauth/profile"
+    asUrlEntry: "http://localhost:3005/api/v1/cdm/oauth/authorize?domain=1",
+    asUrlToken: "http://localhost:3005/api/v1/cdm/oauth/token",
+    asUrlRevoke: "http://localhost:3005/api/v1/cdm/oauth/revoke",
+    asUrlProfile: "http://localhost:3005/api/v1/cdm/oauth/profile",
+    asUserAction: 4
   }, {
     name: "Facebook",
     lot: "social.media",
@@ -57,7 +58,8 @@ const domains = [
     asUrlEntry: "http://localhost:3005/api/v1/cdm/oauth/authorize",
     asUrlToken: "http://localhost:3005/api/v1/cdm/oauth/token",
     asUrlRevoke: "http://localhost:3005/api/v1/cdm/oauth/revoke",
-    asUrlProfile: "http://localhost:3005/api/v1/cdm/oauth/profile"
+    asUrlProfile: "http://localhost:3005/api/v1/cdm/oauth/profile",
+    asUserAction: 4
   }, {
     name: "Github",
     lot: "social.media",
@@ -86,7 +88,8 @@ const domains = [
     asUrlEntry: "http://localhost:3005/api/v1/cdm/oauth/authorize",
     asUrlToken: "http://localhost:3005/api/v1/cdm/oauth/token",
     asUrlRevoke: "http://localhost:3005/api/v1/cdm/oauth/revoke",
-    asUrlProfile: "http://localhost:3005/api/v1/cdm/oauth/profile"
+    asUrlProfile: "http://localhost:3005/api/v1/cdm/oauth/profile",
+    asUserAction: 4
   }
 ];
 

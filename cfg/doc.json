@@ -1,12 +1,27 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "contact": "tonykssa@gmail.com"
-    },
-    "servers": [
-        {
-            "description": "develop",
-            "url": "http://localhost:3005"
+  "openapi": "3.0.0",
+  "info": {
+    "contact": "tonykssa@gmail.com"
+  },
+  "servers": [
+    {
+      "url": "{protocol}://{host}:{port}",
+      "description": "custom development server",
+      "variables": {
+        "port": {
+          "default": "3005"
+        },
+        "host": {
+          "default": "localhost"
+        },
+        "protocol": {
+          "default": "http"
         }
-    ]
+      }
+    },
+    {
+      "description": "local development server",
+      "url": "http://localhost:3005"
+    }
+  ]
 }

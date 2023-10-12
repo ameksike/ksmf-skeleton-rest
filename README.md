@@ -13,9 +13,12 @@ This is a template to create REST API services in a simple and easy way. This pr
 - npx sequelize-cli db:seed:all
 - npm start
 
-## Docker
+## Docker DB
     $ docker-compose up -d db
     $ docker-compose stop db
+    $ socker logs ksmf-skeleton-rest-db-1 -f
+
+## Docker API
     $ docker-compose -f docker-compose.yml up -d api
     $ docker-compose -f docker-compose.yml stop api
     $ docker logs oauth-server-api-1 -f
@@ -80,18 +83,32 @@ The **page** and **size** options allow you to work with limiting and pagination
 - GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId",666]]&sort=[["date","DESC"]]
 - GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId",666], ["comment","Lorem ipsum dolor", "iLike"]]&sort=[["date","DESC"]]
 
+### Auth
+- GET localhost:3005/api/v1/cdm/oauth/authorize?domain=1&affiliate=3
 
 ## Test
 - npm run test
 
 ## Create Data Base Migrations 
-- npx sequelize-cli model:generate --name user --attributes name:string,age:integer,job:string,note:text
-- npx sequelize-cli model:generate --name comment --attributes comment:text,userId:integer,flightId:integer,tagId:integer
-- npx sequelize-cli model:generate --name tag --attributes name:string
-- npx sequelize-cli model:generate --name tagComment --attributes commentId:integer,tagId:integer
+- npx sequelize-cli model:generate --name User --attributes name:string,age:integer,job:string,note:text
+- npx sequelize-cli model:generate --name Comment --attributes comment:text,userId:integer,flightId:integer,tagId:integer
+- npx sequelize-cli model:generate --name Tag --attributes name:string
+- npx sequelize-cli model:generate --name TagComment --attributes comment_id:integer,tag_id:integer
+- npx sequelize-cli model:generate --name Supplier --attributes userId:integer,serviceId:integer,status:integer 
+- npx sequelize-cli model:generate --name Customer --attributes userId:integer,serviceId:integer,status:integer 
+- npx sequelize-cli model:generate --name Affiliate --attributes code:string,userId:integer,ownerId:integer,campaignId:integer,status:integer  
+- npx sequelize-cli model:generate --name Campaign --attributes name:string,description:string,type:integer,value:integer,percent:integer,minimum:integer,maximum:integer,expiration:date,status:integer  
+- npx sequelize-cli model:generate --name Service --attributes name:string,description:string,image:string,ownerName:string,ownerId:integer,type:integer,category:integer,country:string,address:string,grupoId:integer,stock:integer,store:integer,status:integer 
+- npx sequelize-cli model:generate --name Bill --attributes serviceId:integer,currency:string,change:integer,amount:integer,type:integer,cost:integer,tax:integer,taxPercent:integer,transport:integer,discount:integer,discountPercent:integer,decrease:integer,price:integer,benefit:integer,benefitPercent:integer,profit:integer,profitPercent:integer,status:integer 
+- npx sequelize-cli model:generate --name File --attributes name:string,content:string,url:string,status:integer  
+- npx sequelize-cli model:generate --name Group --attributes name:string,description:string,status:integer   
+- npx sequelize-cli model:generate --name GroupUser --attributes groupId:integer,userId:integer,status:integer  
+- npx sequelize-cli model:generate --name GroupService --attributes groupId:integer,serviceId:integer,status:integer  
+- npx sequelize-cli model:generate --name Domain --attributes name:string,description:string,lot:string,status:integer,idpIssuer:string,idpUrlEntry:string,idpUrlLogin:string,idpUrlLogout:string,idpUrlFailure:string,idpMetadata:string,idpMapRole:string,idpMapAttr:string,idpType:integer,idpCert:string,asType:string,idpIdFormat:string,asUrlEntry:string,asUrlToken:string,asUrlRevoke:string,asUrlMetadata:string,asUrlProfile:string,asCert:string,asKey:string,asUserAction:string,spVerify:integer    
+- npx sequelize-cli model:generate --name Credential --attributes name:string,description:string,status:integer,clientId:string,clientSecret:string,codeChallenge:string,codeChallengeMethod:string,redirectUri:string,responseType:string,scope:string,state:string,type:integer,note:string,userId:integer
+- npx sequelize-cli model:generate --name CredentialState --attributes flow:integer,credentialId:integer,domainId:integer,userId:integer,scope:string,state:string,status:integer,metadata:string,note:string,secret:string
 
-- npm run db:model:generate service --attributes name:string
-- npx sequelize-cli db:migrate
+- npx sequelize-cli db:migrate 
 
 ## Create Data Base Seeders
 - npx sequelize-cli seed:generate --name add-user

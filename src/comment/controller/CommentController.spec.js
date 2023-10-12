@@ -3,9 +3,9 @@ const KsMf = require('ksmf');
 const app = new KsMf.app.WEB(__dirname + "/../../../").init();
 const web = app.web;
 const dao = app.helper.get('dao');
-const userModel = dao.models['user'];
-const tagModel = dao.models['tag'];
-const commentModel = dao.models['comment'];
+const userModel = dao.models['User'];
+const tagModel = dao.models['Tag'];
+const commentModel = dao.models['Comment'];
 //... define integration test handler
 const supertest = require('supertest');
 const req = supertest(web);
@@ -51,7 +51,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                 }
             ]);
         } catch (error) {
-            console.log('[TEST_ERROR] ', error && error.message ? error.message : error);
+            console.log('[TEST_ERROR] ', error?.message || error);
         }
     });
 
@@ -131,7 +131,7 @@ describe('INTEGRATION_TEST_Comment_Default_Controller', () => {
                 "comment": "Test 9 Comment",
                 "flightId": 666,
                 "userId": 1,
-                "tags": [1,2]
+                "tags": [1, 2]
             })
             .end((error, res) => {
                 if (error) {

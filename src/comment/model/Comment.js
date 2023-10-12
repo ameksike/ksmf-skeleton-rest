@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Comment.belongsToMany(models.tag, { through: models.tagComment });
-      Comment.hasMany(models.tagComment);
-      Comment.belongsTo(models.user);
+      Comment.belongsToMany(models.Tag, { through: models.TagComment });
+      Comment.hasMany(models.TagComment);
+      Comment.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
   Comment.init({
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'comment',
+    modelName: 'Comment',
   });
   return Comment;
 };

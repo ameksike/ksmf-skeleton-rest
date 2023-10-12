@@ -10,8 +10,8 @@ const config = {
 		"protocol": "mysql"
 	},
 	"production": {
-		"url": process.env["DATABASE_AWS"],
-		"dialect": "postgres",
+		"url": process.env.DB_URL,
+		"dialect": "mysql",
 		"dialectOptions": {
 			"ssl": {
 				"rejectUnauthorized": false
@@ -24,4 +24,5 @@ const config = {
 		"logging": false
 	}
 };
+
 module.exports = config;

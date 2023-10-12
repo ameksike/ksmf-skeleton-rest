@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      TagComment.belongsTo(models.comment);
-      TagComment.belongsTo(models.tag);
+      TagComment.belongsTo(models.Comment);
+      TagComment.belongsTo(models.Tag);
     }
   }
   TagComment.init({
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     tagId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'tagComment',
+    modelName: 'TagComment',
   });
   return TagComment;
 };

@@ -4,6 +4,7 @@
     "port": 3005,
     "host": "localhost",
     "protocol": "http",
+    "prefix": "/api/v1",
     "import": {
       "db": "cfg/db.js",
       "log": "cfg/log.json",
@@ -15,7 +16,7 @@
     },
     "cors": ["https://app.forestadmin.com"],
     "module": {
-      "load": ["cdm", "comment", "app"]
+      "load": ["kscdsm", "comment", "app"]
     },
     "event": {
       "onInitConfig": [

@@ -1,0 +1,16 @@
+{
+  "type": {
+    "basic": 1,
+    "apikey": 2,
+    "app": 3,
+    "worker": 4,
+    "support": 5,
+    "external": 6,
+    "mfa": 7
+  },
+  "status": {
+    "disabled": 0,
+    "activated": 1,
+    "blocked": 3
+  }
+}

@@ -12,25 +12,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Credential.hasMany(models.CredentialState, { foreignKey: 'credentialId'});
-
+      Credential.belongsTo(models.User, { foreignKey: 'userId', as: 'owner' });
     }
   }
   Credential.init({
+    avatar: DataTypes.TEXT,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     status: DataTypes.INTEGER,
     clientId: DataTypes.TEXT,
     clientSecret: DataTypes.TEXT,
-    metadata: DataTypes.TEXT,
-    codeChallenge: DataTypes.TEXT,
-    codeChallengeMethod: DataTypes.STRING,
-    redirectUri: DataTypes.TEXT,
-    responseType: DataTypes.STRING,
-    scope: DataTypes.TEXT,
-    state: DataTypes.TEXT,
     type: DataTypes.INTEGER,
     note: DataTypes.TEXT,
-    userId: DataTypes.INTEGER
+    metadata: DataTypes.TEXT,
+    userId: DataTypes.INTEGER,
+    groupId: DataTypes.INTEGER,
+    redirectUri: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Credential',

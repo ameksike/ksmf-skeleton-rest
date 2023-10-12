@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      avatar: {
+        type: Sequelize.TEXT
+      },
       name: {
         type: Sequelize.STRING
       },
@@ -26,24 +29,6 @@ module.exports = {
       metadata: {
         type: Sequelize.TEXT
       },
-      codeChallenge: {
-        type: Sequelize.TEXT
-      },
-      codeChallengeMethod: {
-        type: Sequelize.STRING
-      },
-      redirectUri: {
-        type: Sequelize.TEXT
-      },
-      responseType: {
-        type: Sequelize.STRING
-      },
-      scope: {
-        type: Sequelize.TEXT
-      },
-      state: {
-        type: Sequelize.TEXT
-      },
       type: {
         type: Sequelize.INTEGER
       },
@@ -52,6 +37,12 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER
+      },
+      groupId: {
+        type: Sequelize.INTEGER
+      },
+      redirectUri: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

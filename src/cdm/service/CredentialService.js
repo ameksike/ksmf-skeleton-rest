@@ -5,6 +5,9 @@
  * @copyright  	Copyright (c) 2020-2030
  * @license    	GPL
  * @version    	1.0 
+ * @requires    DataService
+ * @requires    ksmf
+ * @requires    kscryp
  **/
 
 const ksmf = require('ksmf');
@@ -16,6 +19,10 @@ class CredentialService extends ksmf.dao.DataService {
         this.modelName = 'Credential';
     }
 
+    init() {
+        this.modelName = this.opt?.model[this.modelName] || this.modelName;
+    }
+
     /**
      * @description generate id and secret for a credential
      * @param {Object} data 
@@ -24,8 +31,8 @@ class CredentialService extends ksmf.dao.DataService {
      */
     generate(data, opt) {
         data = data || {};
-        data.client_id = data.client_id || kscryp.encode(opt?.user_agent || Date.now() + Math.floor(Math.random() * 101), "hash", { algorithm: "md5" });
-        data.client_secret = (data.client_secret || opt?.strict) ? data.client_secret : kscryp.encode(data.client_id + ":" + (data.product_id || Date.now()), "hash", { algorithm: "md5" });
+        data.clientId = data.clientId || kscryp.encode(data?.userAgent || Date.now() + Math.floor(Math.random() * 101), "hash", { algorithm: "md5" });
+        data.clientSecret = (data.clientSecret || opt?.strict) ? data.clientSecret : kscryp.encode(data.clientId + ":" + (data.productId || Date.now()), "hash", { algorithm: "md5" });
         return data;
     }
 }

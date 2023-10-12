@@ -14,6 +14,10 @@ class UserService extends ksmf.dao.DataService {
         super(config);
         this.modelName = 'User';
     }
+
+    init() {
+        this.modelName = this.opt?.model[this.modelName] || this.modelName;
+    }
 }
 
 module.exports = UserService;

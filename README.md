@@ -83,6 +83,8 @@ The **page** and **size** options allow you to work with limiting and pagination
 - GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId",666]]&sort=[["date","DESC"]]
 - GET http://localhost:3005/api/v1/comment?page=2&size=2&filter=[["flightId",666], ["comment","Lorem ipsum dolor", "iLike"]]&sort=[["date","DESC"]]
 
+### Auth
+- GET localhost:3005/api/v1/cdm/oauth/authorize?domain=1&affiliate=3
 
 ## Test
 - npm run test

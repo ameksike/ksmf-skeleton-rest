@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Domain.init({
+    avatar: DataTypes.TEXT,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     lot: DataTypes.STRING,

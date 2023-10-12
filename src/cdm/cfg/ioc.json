@@ -1,65 +1,81 @@
 {
-    "cdm.service.Credential" : {
-        "name": "CredentialService",
-        "path": "service",
-        "module": "cdm",
-        "dependency": {
-            "dao": "dao",
-            "helper": "helper",
-            "logger": "logger"
-        }
-    },
-    "cdm.service.CredentialState" : {
-        "name": "CredentialStateService",
-        "path": "service",
-        "module": "cdm",
-        "dependency": {
-            "dao": "dao",
-            "helper": "helper",
-            "logger": "logger"
-        }
-    },
-    "cdm.service.Domain" : {
-        "name": "DomainService",
-        "path": "service",
-        "module": "cdm",
-        "dependency": {
-            "dao": "dao",
-            "helper": "helper",
-            "logger": "logger"
-        }
-    },
-    "cdm.service.Account" : {
-        "name": "AccountService",
-        "path": "service",
-        "module": "cdm",
-        "dependency": {
-            "dao": "dao",
-            "helper": "helper",
-            "logger": "logger",
-            "srvDomain": "cdm.service.Domain",
-            "srvCredential": "cdm.service.Credential",
-            "srvCredentialState": "cdm.service.CredentialState"
-        }
-    },
-    "cdm.service.OauthAuthorizationCode" : {
-        "name": "OauthAuthorizationCode",
-        "path": "service",
-        "module": "cdm",
-        "dependency": {
-            "dao": "dao",
-            "helper": "helper",
-            "logger": "logger"
-        }
-    },
-    "cdm.service.Google" : {
-        "name": "Google",
-        "path": "service",
-        "module": "cdm",
-        "dependency": {
-            "dao": "dao",
-            "helper": "helper",
-            "logger": "logger"
-        }
+  "cdm.service.Credential": {
+    "name": "CredentialService",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger",
+      "opt": "cdm.data"
     }
+  },
+  "cdm.service.CredentialState": {
+    "name": "CredentialStateService",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger",
+      "opt": "cdm.data"
+    }
+  },
+  "cdm.service.Domain": {
+    "name": "DomainService",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger",
+      "opt": "cdm.data"
+    }
+  },
+  "cdm.service.Account": {
+    "name": "AccountService",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger",
+      "srvDomain": "cdm.service.Domain",
+      "srvCredential": "cdm.service.Credential",
+      "srvCredentialState": "cdm.service.CredentialState",
+      "srvUser": "cdm.service.User",
+      "opt": "cdm.data"
+    }
+  },
+  "cdm.service.User": {
+    "name": "UserService",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger",
+      "opt": "cdm.data"
+    }
+  },
+  "cdm.service.OauthService": {
+    "name": "OauthService",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger"
+    }
+  },
+  "cdm.service.OauthGoogle": {
+    "name": "OauthGoogle",
+    "path": "service",
+    "module": "cdm",
+    "dependency": {
+      "dao": "dao",
+      "helper": "helper",
+      "logger": "logger"
+    }
+  }
 }

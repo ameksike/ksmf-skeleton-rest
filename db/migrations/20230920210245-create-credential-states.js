@@ -20,25 +20,49 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
+      affiliate: {
+        type: Sequelize.INTEGER
+      },
+      userAgent: {
+        type: Sequelize.TEXT
+      },
+      codeChallenge: {
+        type: Sequelize.TEXT
+      },
+      codeChallengeMethod: {
+        type: Sequelize.STRING
+      },
+      redirectUri: {
+        type: Sequelize.TEXT
+      },
+      responseType: {
+        type: Sequelize.STRING
+      },
       scope: {
         type: Sequelize.TEXT
       },
       state: {
         type: Sequelize.TEXT
       },
-      status: {
-        type: Sequelize.INTEGER
-      },
-      redirectUri: {
+      metadata: {
         type: Sequelize.TEXT
       },
-      metadata: {
+      code: {
         type: Sequelize.TEXT
       },
       note: {
         type: Sequelize.TEXT
       },
-      secret: {
+      expirationTime: {
+        type: Sequelize.TEXT
+      },
+      expirationSecret: {
+        type: Sequelize.TEXT
+      },
+      refreshTime: {
+        type: Sequelize.TEXT
+      },
+      refreshSecret: {
         type: Sequelize.TEXT
       },
       createdAt: {

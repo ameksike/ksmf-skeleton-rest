@@ -15,10 +15,17 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Customer, { foreignKey: 'userId' });
       User.hasMany(models.Supplier, { foreignKey: 'userId' });
       User.hasMany(models.CredentialState, { foreignKey: 'userId' });
+      User.hasMany(models.Credential, { foreignKey: 'userId', as: 'owner' });
       User.belongsToMany(models.Group, { through: models.GroupUsers, foreignKey: 'userId' });
     }
   }
   User.init({
+    lang: {
+      type: DataTypes.STRING
+    },
+    avatar: {
+      type: DataTypes.STRING
+    },
     firstName: {
       type: DataTypes.STRING
     },
@@ -53,6 +60,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     country: {
+      type: DataTypes.STRING
+    },
+    lang: {
       type: DataTypes.STRING
     },
     nationality: {

@@ -53,7 +53,7 @@
     "express-session": "^1.17.3",
     "express-validator": "^6.14.0",
     "kscdsm": "^1.0.2",
-    "ksmf": "^1.2.31",
+    "ksmf": "^1.2.36",
     "ksmf-forestadmin": "^1.0.1",
     "mariadb": "^3.0.0",
     "mysql2": "^2.3.3",

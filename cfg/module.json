@@ -1,0 +1,18 @@
+{
+  "load": [
+    "kscdsm",
+    "comment",
+    "app",
+    {
+      "id": "ksmf.rest.Affiliate",
+      "name": "ksmf",
+      "type": "lib",
+      "namespace": "dao.DataModule",
+      "options": {
+        "db": {
+          "modelName": "Affiliate"
+        }
+      }
+    }
+  ]
+}

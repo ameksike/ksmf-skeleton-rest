@@ -27,7 +27,7 @@
       ],
       "onInitModules": ["dao.wrapper"],
       "onLoadModule": ["dao.wrapper", "doc.wrapper"],
-      "onLoadedModules": ["dao.wrapper", "forest.wrapper"],
+      "onLoadedModules": ["dao.wrapper", "ksmf.forestadmin.wrapper"],
       "onInitApp": ["logger.wrapper"],
       "onInitCompleted": ["doc.wrapper"],
       "onStart": ["monitor.wrapper"],
@@ -54,13 +54,6 @@
           "exclude": ["forest"]
         },
         "namespace": "dao.Wrapper",
-        "dependency": {
-          "helper": "helper"
-        }
-      },
-      "forest.wrapper": {
-        "name": "forest",
-        "type": "module",
         "dependency": {
           "helper": "helper"
         }
@@ -113,6 +106,13 @@
         "name": "ksmf",
         "type": "lib",
         "namespace": "dao.DataService",
+        "dependency": {
+          "helper": "helper"
+        }
+      },
+      "ksmf.forestadmin.wrapper": {
+        "name": "ksmf-forestadmin",
+        "type": "lib",
         "dependency": {
           "helper": "helper"
         }

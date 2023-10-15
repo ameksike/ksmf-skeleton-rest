@@ -83,6 +83,13 @@
       "helper": "helper"
     }
   },
+  "ksmf.adminjs.wrapper": {
+    "name": "ksmf-adminjs",
+    "type": "lib",
+    "dependency": {
+      "helper": "helper"
+    }
+  },
   "cdm.data": {
     "type": "raw",
     "data": {

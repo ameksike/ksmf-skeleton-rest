@@ -26,7 +26,7 @@
       ],
       "onInitModules": ["dao.wrapper"],
       "onLoadModule": ["dao.wrapper", "doc.wrapper"],
-      "onLoadedModules": ["dao.wrapper", "ksmf.forestadmin.wrapper"],
+      "onLoadedModules": ["dao.wrapper", "ksmf.forestadmin.wrapper", "ksmf.adminjs.wrapper"],
       "onInitApp": ["logger.wrapper"],
       "onInitCompleted": ["doc.wrapper"],
       "onStart": ["monitor.wrapper"],

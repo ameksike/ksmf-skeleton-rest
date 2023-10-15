@@ -51,6 +51,7 @@
     "express-validator": "^6.14.0",
     "kscdsm": "^1.0.2",
     "ksmf": "^1.2.36",
+    "ksmf-adminjs": "^1.0.1",
     "ksmf-forestadmin": "^1.0.1",
     "mariadb": "^3.0.0",
     "mysql2": "^2.3.3",

@@ -18,6 +18,11 @@ const config = {
 			}
 		}
 	},
+	"local": {
+		"dialect": "sqlite",
+		"storage": "./db/data/storage.db",
+		"logging": false
+	},
 	"test": {
 		"dialect": "sqlite",
 		"storage": ":memory:",

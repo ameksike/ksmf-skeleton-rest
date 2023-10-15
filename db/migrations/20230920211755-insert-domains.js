@@ -90,6 +90,7 @@ const domains = [
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+
     let url = process.env.SERVER_URI || "http://localhost:3005";
     let data = domains.map(itm => {
       itm.idpMapAttr = typeof itm.idpMapAttr !== "object" ? itm.idpMapAttr : JSON.stringify(itm.idpMapAttr);
@@ -99,6 +100,8 @@ module.exports = {
       itm.asUrlProfile = url + itm.asUrlProfile;
       itm.idpUrlEntryBack = url + itm.idpUrlEntryBack;
       itm.idpUrlRevokeBack = url + itm.idpUrlRevokeBack;
+      itm.createdAt = (new Date()).toISOString();
+      itm.updatedAt = (new Date()).toISOString();
       return itm;
     });
     await queryInterface.bulkInsert('Domains', data);

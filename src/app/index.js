@@ -15,12 +15,13 @@ class AppModule extends KsMf.app.Module {
         const web = app.web;
         function redirect(req, res) {
             if (app?.cfg?.srv?.doc?.url) {
-                res.writeHead(302, {
+                /*res.writeHead instanceof Function && res.writeHead(302, {
                     location: app.cfg.srv.doc.url,
-                });
-                res.end();
+                });*/
+                res.redirect(app.cfg.srv.doc.url);  
+                // res.end();
             } else {
-                res.end('API v1.0.0');
+                res.send('API v1.0.0');
             }
         }
         web.get('/', (req, res) => {

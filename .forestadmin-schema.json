@@ -693,7 +693,7 @@
           "validations": []
         },
         {
-          "defaultValue": 1706222470262,
+          "defaultValue": 1709713690809,
           "enums": [],
           "field": "date",
           "integration": null,
@@ -3303,7 +3303,7 @@
   ],
   "meta": {
     "liana": "forest-nodejs-agent",
-    "liana_version": "1.35.9",
+    "liana_version": "1.38.3",
     "liana_features": null,
     "stack": {"engine": "nodejs", "engine_version": "14.20.1"}
   }

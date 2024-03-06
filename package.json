@@ -47,19 +47,18 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "express-session": "^1.17.3",
     "express-validator": "^6.14.0",
     "kscdsm": "^1.0.2",
-    "ksmf": "^1.2.41",
+    "ksmf": "^1.3.2",
     "ksmf-adminjs": "^1.0.1",
+    "ksmf-express": "^1.0.1",
+    "ksmf-fastify": "^1.0.1",
     "ksmf-forestadmin": "^1.0.1",
+    "ksmf-sequelize": "^1.0.1",
     "mariadb": "^3.0.0",
     "mysql2": "^2.3.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.32.1",
-    "sequelize-auto": "^0.8.8",
-    "sequelize-cli": "^6.4.1",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0"
   }

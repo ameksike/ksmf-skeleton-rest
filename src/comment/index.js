@@ -13,16 +13,20 @@ class CommentModule extends KsMf.app.Module {
     initConfig() {
         const version = "/api/v1";
         this.routes = [{
-            route: version + this.prefix + "/",
+            route: version + "/tag",
+            controller: 'TagController',
+            method: 'rest'
+        }, {
+            route: this.prefix + "/tst",
+            controller: 'TstController',
+            method: 'rest'
+        }, {
+            route: this.prefix + "/:commentId/tag",
+            controller: 'TagController',
+            method: 'rest'
+        }, {
+            route: this.prefix + "/",
             controller: 'CommentController',
-            method: 'rest'
-        }, {
-            route: version + "/tag/",
-            controller: 'TagController',
-            method: 'rest'
-        }, {
-            route: version + this.prefix + "/:commentId/tag/",
-            controller: 'TagController',
             method: 'rest'
         }];
     }

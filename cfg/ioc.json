@@ -4,22 +4,28 @@
     "type": "lib",
     "namespace": "app.Utl"
   },
+  "server": {
+    "name": "ksmf-fastify",
+    "type": "package",
+    "dependency": {
+      "helper": "helper"
+    }
+  },
   "dao": {
-    "name": "ksmf",
-    "type": "lib",
-    "namespace": "dao.Sequelize",
+    "name": "ksmf-sequelize",
+    "type": "package",
     "dependency": {
       "helper": "helper"
     }
   },
   "dao.wrapper": {
-    "name": "ksmf",
+    "name": "ksmf-sequelize",
     "type": "lib",
     "params": {
         "exclude": ["forest"],
         "service": "rest"
     },
-    "namespace": "dao.Wrapper",
+    "namespace": "cls.Wrapper",
     "dependency": {
       "helper": "helper"
     }
